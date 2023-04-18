@@ -1,0 +1,65 @@
+  .novoClienteFundo {
+    background-color: rgba(0, 0, 0, 0.507);
+    position: absolute;
+    top: 0;
+    left: 17vw;
+    width: 83vw;
+    height: 100vh;
+    z-index: 2;
+  }
+  
+  .novoClienteModal {
+    background-color: white;
+    top: 10vh;
+    left: 31vw;
+    width: 912px;
+    height: 80vh;
+    position: absolute;
+    z-index: 3;
+  }
+  
+  .novoClienteCabecalho {
+    background-color: #003a36;
+    padding: 20px 10px;
+  }
+  
+  .novoClienteCabecalhoTitulo {
+    font-size: 1.5rem;
+    color: white;
+    margin-left: 20px;
+  }
+  
+  .novoClienteFormTitulo {
+    margin-top: 20px;
+    text-align: center;
+    grid-area: titulo;
+  }
+  
+  .novoClienteFormLabel {
+    text-align: right;
+    margin-top: 15px;
+  }
+    
+  .novoClienteBotoes {
+    position: absolute;
+    bottom: 30px;
+    right: 30px;
+  }
+  
+  .novoClienteBotoesBotao {
+    padding: 10px 15px;
+    background-color: #003a36;
+    color: white;
+    font-weight: bold;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  .novoClienteBotoesCancelar {
+    padding: 10px 15px;
+    background-color: white;
+    font-weight: bold;
+    border: none;
+    cursor: pointer;
+  }

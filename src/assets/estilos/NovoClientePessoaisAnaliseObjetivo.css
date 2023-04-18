@@ -1,0 +1,96 @@
+.novoClientePessoaisForm {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  padding: 0 50px;
+}
+
+.novoClientePessoaisFormInput {
+  width: 250px;
+  margin-left: 20px;
+  border: none;
+  border-bottom: solid 1px gray;
+  padding: 5px 5px 0;
+  font-size: 1rem;
+  outline: none;
+}
+
+.novoClienteErroPessoais{
+  color: red;
+  font-size: .8rem;
+  text-align: center;
+  margin: 5px 0 0 160px;
+}
+
+.novoClienteDiv {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  margin-top: 20px;
+}
+
+.novoClienteAnalise {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-areas:
+    "titulo titulo"
+    "grafico form"
+    "erro erro";
+  align-items: center;
+  padding: 0 15%;
+}
+
+.novoClienteAnaliseGrafico {
+  background-color: #003a36;
+  border-radius: 100px;
+  width: 200px;
+  height: 200px;
+  grid-area: grafico;
+  margin: 20px 0 0 -45px;
+
+}
+
+.novoClienteAnaliseForm {
+  grid-area: form;
+  display: flex;
+  flex-direction: column;
+}
+
+.novoClienteAnaliseFormInput {
+  width: 60px;
+  margin-left: 15px;
+  border: none;
+  border-bottom: solid 1px gray;
+  padding: 5px 5px 0;
+  font-size: 1rem;
+  outline: none;
+}
+
+.novoClienteErroAnalise {
+  color: red;
+  font-size: .8rem;
+  text-align: center;
+  margin: 5px 0 0 0px;
+  grid-area: erro;
+}
+
+
+.novoClienteObjetivoForm {
+  display: flex;
+  flex-direction: column;
+  margin: 30px 100px 0 0;
+}
+
+.novoClienteObjetivoFormInput {
+  width: 200px;
+  margin-left: 20px;
+  border: none;
+  border-bottom: solid 1px gray;
+  padding: 5px 5px 0;
+  font-size: 1rem;
+  outline: none;
+}
+
+.novoClienteErroObjetivo {
+  color: red;
+  font-size: .8rem;
+  margin: 5px 0 0 0px;
+}

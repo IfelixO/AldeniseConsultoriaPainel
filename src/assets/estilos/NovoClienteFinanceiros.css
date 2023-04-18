@@ -1,0 +1,59 @@
+.novoClienteFinanceirosForm {
+  display: flex;
+  flex-direction: column;
+  padding: 0 40px 0 20px;
+}
+
+.novoClienteFormLabelFin {
+    text-align: right;
+    margin-top: 15px;
+    width: 100%;
+}
+
+.novoClienteFinanceirosFormInputReceita {
+  width: 80%;
+  margin-left: 20px;
+  border: none;
+  border-bottom: solid 1px gray;
+  padding: 5px 5px 0;
+  font-size: 1rem;
+  outline: none;
+}
+
+.novoClienteFinanceirosDiv {
+    display: flex;
+    justify-content: right;
+    align-items: center;
+}
+
+.novoClienteFormSeta {
+  width: 20px;
+  height: 20px;
+  margin-right: 55px;
+}
+
+.novoClienteFinanceirosFormInput {
+  width: 60%;
+  margin-left: 20px;
+  border: none;
+  border-bottom: solid 1px gray;
+  padding: 5px 5px 0;
+  font-size: 1rem;
+  outline: none;
+
+}
+
+.novoClienteErroFinanceirosReceita {
+  color: red;
+  font-size: .8rem;
+  margin: 5px 0 0 0px;
+  text-align: center;
+}
+
+.novoClienteErroFinanceirosDespesas {
+  color: red;
+  font-size: .8rem;
+  margin: 5px 0 0 0px;
+  text-align: center;
+}
+

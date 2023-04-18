@@ -1,0 +1,46 @@
+.clientesTabela {
+  width: 100%;
+  border-collapse: collapse;
+  box-shadow: 0 0 5px 2px gray;
+  margin-top: 20px;
+}
+
+.clientesTabelaCabecalho {
+  background-color: rgb(190, 190, 190);
+}
+
+.clientesTabelaCorpo {
+  background-color: white;
+}
+
+.clientesTabelaCabecalhoItem {
+  padding: 10px;
+  padding: 10px 20px;
+  text-align: left;
+}
+
+.clientesTabelaCabecalhoAcoes {
+  padding: 10px;
+  text-align: center;
+}
+
+.clientesTabelaCabecalhoItemOrdenar {
+  margin: 0 5px -3px;
+  cursor: pointer;
+}
+
+.clientesTabelaCorpoItem {
+  padding: 10px 20px;
+  border-top: 1px solid black;
+}
+
+.clientesTabelaCorpoAcoes {
+  padding: 10px;
+  border-top: 1px solid black;
+}
+
+.clientesTabelaCorpoAcoesBt {
+  margin: 0 45%;
+  cursor: pointer;
+  color: black;
+}
