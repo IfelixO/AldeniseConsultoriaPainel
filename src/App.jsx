@@ -15,7 +15,10 @@ export default function App() {
   const [visiCadastro, setVisiCadastro] = useState(false);
   const [erro, setErro] = useState(null);
 
+  const [carregando, setCarregando] = useState(false);
+
   const cuidarEntrar = () => {
+    setCarregando(true)
     let adm = {
       login: login,
       senha: senha,
@@ -143,16 +146,27 @@ export default function App() {
               }}
             />
             <p className="erro">{erro}</p>
-            <button onClick={cuidarEntrar} className="appBotao" title="Entrar">
-              Entrar
-            </button>
-            <button
-              onClick={cuidarAcesso}
-              className="appBotaoAcesso"
-              title="Primeiro acesso"
-            >
-              Primeiro acesso
-            </button>
+            {carregando ? (
+              <p className="carregando">Entrando...</p>
+            ) : (
+              <>
+                {" "}
+                <button
+                  onClick={cuidarEntrar}
+                  className="appBotao"
+                  title="Entrar"
+                >
+                  Entrar
+                </button>
+                <button
+                  onClick={cuidarAcesso}
+                  className="appBotaoAcesso"
+                  title="Primeiro acesso"
+                >
+                  Primeiro acesso
+                </button>
+              </>
+            )}
           </div>
         )}
       </div>
