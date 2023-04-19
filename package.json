@@ -15,7 +15,7 @@
     "react-dom": "^18.2.0",
     "react-google-charts": "^4.0.0",
     "react-icons": "^4.8.0",
-    "react-input-mask": "^2.0.4",
+    "react-imask": "^6.6.0",
     "react-loading-skeleton": "^3.2.1",
     "react-router-dom": "^6.10.0"
   },
