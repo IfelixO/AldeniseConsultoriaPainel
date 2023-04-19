@@ -94,3 +94,19 @@
   font-size: .8rem;
   margin: 5px 0 0 0px;
 }
+
+
+.novoClientePAOBotoesBotao {
+  padding: 10px 15px;
+  background-color: #003a36;
+  color: white;
+  font-weight: bold;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  margin: 150px 30px 0 0 ;
+  justify-self: right;
+  width: fit-content;
+  grid-column: 2;
+  z-index: 3;
+}

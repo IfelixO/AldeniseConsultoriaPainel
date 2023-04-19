@@ -1,5 +1,6 @@
 import logo from "../img/logo.png";
 import '../estilos/Menu.css'
+import {Link} from "react-router-dom"
 
 export default function Menu() {
   return (
@@ -32,9 +33,9 @@ export default function Menu() {
           >
             Suporte
           </a>
-          <a href="/" className="clientesMenuNavItem">
+          <Link to={'/'} className="clientesMenuNavItem">
             Sair
-          </a>
+          </Link>
         </div>
       </div>
     </aside>

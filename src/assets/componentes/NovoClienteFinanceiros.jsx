@@ -75,7 +75,7 @@ export default function NovoClienteFinanceiros({
               id="valorDespesa1"
               name="valorDespesa1"
               form="financeiros"
-              tabIndex={2}
+              tabIndex={3}
               maxLength={20}
               onChange={(e) => {
                 cuidarInputMoeda(e);
@@ -92,7 +92,7 @@ export default function NovoClienteFinanceiros({
               id="tituloDespesa2"
               name="tituloDespesa2"
               form="financeiros"
-              tabIndex={3}
+              tabIndex={4}
               maxLength={20}
               onChange={(e) => {
                 cuidarInsercaoDados(e);
@@ -108,7 +108,7 @@ export default function NovoClienteFinanceiros({
               id="valorDespesa2"
               name="valorDespesa2"
               form="financeiros"
-              tabIndex={2}
+              tabIndex={5}
               maxLength={20}
               onChange={(e) => {
                 cuidarInputMoeda(e);
@@ -125,7 +125,7 @@ export default function NovoClienteFinanceiros({
               id="tituloDespesa3"
               name="tituloDespesa3"
               form="financeiros"
-              tabIndex={4}
+              tabIndex={6}
               maxLength={20}
               onChange={(e) => {
                 cuidarInsercaoDados(e);
@@ -142,7 +142,7 @@ export default function NovoClienteFinanceiros({
               id="valorDespesa3"
               name="valorDespesa3"
               form="financeiros"
-              tabIndex={2}
+              tabIndex={7}
               maxLength={20}
               onChange={(e) => {
                 cuidarInputMoeda(e);
@@ -159,7 +159,7 @@ export default function NovoClienteFinanceiros({
               id="tituloDespesa4"
               name="tituloDespesa4"
               form="financeiros"
-              tabIndex={4}
+              tabIndex={8}
               maxLength={20}
               onChange={(e) => {
                 cuidarInsercaoDados(e);
@@ -175,7 +175,7 @@ export default function NovoClienteFinanceiros({
               id="valorDespesa4"
               name="valorDespesa4"
               form="financeiros"
-              tabIndex={2}
+              tabIndex={9}
               maxLength={20}
               onChange={(e) => {
                 cuidarInputMoeda(e);
@@ -192,7 +192,7 @@ export default function NovoClienteFinanceiros({
               id="tituloDespesa5"
               name="tituloDespesa5"
               form="financeiros"
-              tabIndex={4}
+              tabIndex={10}
               maxLength={20}
               onChange={(e) => {
                 cuidarInsercaoDados(e);
@@ -208,7 +208,7 @@ export default function NovoClienteFinanceiros({
               id="valorDespesa5"
               name="valorDespesa5"
               form="financeiros"
-              tabIndex={2}
+              tabIndex={11}
               maxLength={20}
               onChange={(e) => {
                 cuidarInputMoeda(e);
@@ -225,7 +225,7 @@ export default function NovoClienteFinanceiros({
               id="tituloDespesa6"
               name="tituloDespesa6"
               form="financeiros"
-              tabIndex={4}
+              tabIndex={12}
               maxLength={20}
               onChange={(e) => {
                 cuidarInsercaoDados(e);
@@ -241,7 +241,7 @@ export default function NovoClienteFinanceiros({
               id="valorDespesa6"
               name="valorDespesa6"
               form="financeiros"
-              tabIndex={2}
+              tabIndex={13}
               maxLength={20}
               onChange={(e) => {
                 cuidarInputMoeda(e);
@@ -258,7 +258,7 @@ export default function NovoClienteFinanceiros({
               id="tituloDespesa7"
               name="tituloDespesa7"
               form="financeiros"
-              tabIndex={4}
+              tabIndex={14}
               maxLength={20}
               onChange={(e) => {
                 cuidarInsercaoDados(e);
@@ -274,7 +274,7 @@ export default function NovoClienteFinanceiros({
               id="valorDespesa7"
               name="valorDespesa7"
               form="financeiros"
-              tabIndex={2}
+              tabIndex={15}
               maxLength={20}
               onChange={(e) => {
                 cuidarInputMoeda(e);
@@ -291,7 +291,7 @@ export default function NovoClienteFinanceiros({
               id="tituloDespesa8"
               name="tituloDespesa8"
               form="financeiros"
-              tabIndex={4}
+              tabIndex={16}
               maxLength={20}
               onChange={(e) => {
                 cuidarInsercaoDados(e);
@@ -307,7 +307,7 @@ export default function NovoClienteFinanceiros({
               id="valorDespesa8"
               name="valorDespesa8"
               form="financeiros"
-              tabIndex={2}
+              tabIndex={17}
               maxLength={20}
               onChange={(e) => {
                 cuidarInputMoeda(e);
@@ -324,7 +324,7 @@ export default function NovoClienteFinanceiros({
               id="tituloDespesa9"
               name="tituloDespesa9"
               form="financeiros"
-              tabIndex={4}
+              tabIndex={18}
               maxLength={20}
               onChange={(e) => {
                 cuidarInsercaoDados(e);
@@ -341,7 +341,7 @@ export default function NovoClienteFinanceiros({
               id="valorDespesa9"
               name="valorDespesa9"
               form="financeiros"
-              tabIndex={2}
+              tabIndex={19}
               maxLength={20}
               onChange={(e) => {
                 cuidarInputMoeda(e);
@@ -358,7 +358,7 @@ export default function NovoClienteFinanceiros({
               id="tituloDespesa10"
               name="tituloDespesa10"
               form="financeiros"
-              tabIndex={4}
+              tabIndex={20}
               maxLength={20}
               onChange={(e) => {
                 cuidarInsercaoDados(e);
@@ -375,7 +375,7 @@ export default function NovoClienteFinanceiros({
               id="valorDespesa10"
               name="valorDespesa10"
               form="financeiros"
-              tabIndex={2}
+              tabIndex={21}
               maxLength={20}
               onChange={(e) => {
                 cuidarInputMoeda(e);

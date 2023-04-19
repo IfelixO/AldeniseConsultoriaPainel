@@ -6,7 +6,6 @@ import { useEffect } from "react";
 
 export default function NovoClientePessoaisAnaliseObjetivo({
   setValoresPessoais,
-  setValoresAnalise,
   setValoresObjetivo,
   erroNome,
   erroTelefone,
@@ -18,11 +17,13 @@ export default function NovoClientePessoaisAnaliseObjetivo({
   erroFinal,
   erroInicial,
   erroParcela,
+  cuidarProxima,
 }) {
   const [tubaraoPorc, setTubaraoPorc] = useState(0);
   const [gatoPorc, setGatoPorc] = useState(0);
   const [loboPorc, setLoboPorc] = useState(0);
   const [aguiaPorc, setAguiaPorc] = useState(0);
+  const [valoresAnalise, setValoresAnalise] = useState({});
 
   const cuidarInsercaoDadosPessoais = (e) => {
     setValoresPessoais((prev) => ({
@@ -70,6 +71,19 @@ export default function NovoClientePessoaisAnaliseObjetivo({
     return e;
   };
 
+  const cuidarClick = () => {
+    cuidarProxima(valoresAnalise);
+  };
+  
+  useEffect(()=>{
+    setValoresAnalise({
+      tubarao: tubaraoPorc,
+      gato: gatoPorc,
+      lobo: loboPorc,
+      aguia: aguiaPorc,
+    });
+  },[aguiaPorc, tubaraoPorc, gatoPorc, loboPorc])
+
   return (
     <>
       <section className="novoClientePessoais">
@@ -90,7 +104,7 @@ export default function NovoClientePessoaisAnaliseObjetivo({
                 cuidarInsercaoDadosPessoais(e);
               }}
             />
-          <p className="novoClienteErroPessoais">{erroNome}</p>
+            <p className="novoClienteErroPessoais">{erroNome}</p>
           </label>
           <label className="novoClienteFormLabel">
             Telefone
@@ -107,7 +121,7 @@ export default function NovoClientePessoaisAnaliseObjetivo({
                 cuidarInputTelefone(e);
               }}
             />
-          <p className="novoClienteErroPessoais">{erroEmail}</p>
+            <p className="novoClienteErroPessoais">{erroEmail}</p>
           </label>
           <label className="novoClienteFormLabel">
             E-mail
@@ -124,7 +138,7 @@ export default function NovoClientePessoaisAnaliseObjetivo({
                 cuidarInsercaoDadosPessoais(e);
               }}
             />
-          <p className="novoClienteErroPessoais">{erroTelefone}</p>
+            <p className="novoClienteErroPessoais">{erroTelefone}</p>
           </label>
           <label className="novoClienteFormLabel">
             Ocupação
@@ -141,7 +155,7 @@ export default function NovoClientePessoaisAnaliseObjetivo({
                 cuidarInsercaoDadosPessoais(e);
               }}
             />
-          <p className="novoClienteErroPessoais">{erroOcupacao}</p>
+            <p className="novoClienteErroPessoais">{erroOcupacao}</p>
           </label>
         </form>
       </section>
@@ -178,12 +192,6 @@ export default function NovoClientePessoaisAnaliseObjetivo({
                 maxLength={4}
                 onChange={(v) => {
                   setTubaraoPorc(Number(v.target.value));
-                  setValoresAnalise({
-                    tubarao: tubaraoPorc,
-                    gato: gatoPorc,
-                    lobo: loboPorc,
-                    aguia: aguiaPorc,
-                  });
                 }}
               />
               %
@@ -202,12 +210,6 @@ export default function NovoClientePessoaisAnaliseObjetivo({
                 maxLength={4}
                 onChange={(v) => {
                   setGatoPorc(Number(v.target.value));
-                  setValoresAnalise({
-                    tubarao: tubaraoPorc,
-                    gato: gatoPorc,
-                    lobo: loboPorc,
-                    aguia: aguiaPorc,
-                  });
                 }}
               />
               %
@@ -226,12 +228,6 @@ export default function NovoClientePessoaisAnaliseObjetivo({
                 maxLength={4}
                 onChange={(v) => {
                   setLoboPorc(Number(v.target.value));
-                  setValoresAnalise({
-                    tubarao: tubaraoPorc,
-                    gato: gatoPorc,
-                    lobo: loboPorc,
-                    aguia: aguiaPorc,
-                  });
                 }}
               />
               %
@@ -250,12 +246,6 @@ export default function NovoClientePessoaisAnaliseObjetivo({
                 maxLength={4}
                 onChange={(v) => {
                   setAguiaPorc(Number(v.target.value));
-                  setValoresAnalise({
-                    tubarao: tubaraoPorc,
-                    gato: gatoPorc,
-                    lobo: loboPorc,
-                    aguia: aguiaPorc,
-                  });
                 }}
               />
               %
@@ -281,7 +271,7 @@ export default function NovoClientePessoaisAnaliseObjetivo({
                   cuidarInsercaoDadosObjetivo(e);
                 }}
               />
-          <p className="novoClienteErroObjetivo">{erroTitulo}</p>
+              <p className="novoClienteErroObjetivo">{erroTitulo}</p>
             </label>
             <label className="novoClienteFormLabel">
               Motivação
@@ -298,7 +288,7 @@ export default function NovoClientePessoaisAnaliseObjetivo({
                   cuidarInsercaoDadosObjetivo(e);
                 }}
               />
-          <p className="novoClienteErroObjetivo">{erroMotivacao}</p>
+              <p className="novoClienteErroObjetivo">{erroMotivacao}</p>
             </label>
             <label className="novoClienteFormLabel">
               Valor final
@@ -315,7 +305,7 @@ export default function NovoClientePessoaisAnaliseObjetivo({
                   cuidarInputMoeda(e);
                 }}
               />
-          <p className="novoClienteErroObjetivo">{erroFinal}</p>
+              <p className="novoClienteErroObjetivo">{erroFinal}</p>
             </label>
             <label className="novoClienteFormLabel">
               Valor inicial
@@ -332,7 +322,7 @@ export default function NovoClientePessoaisAnaliseObjetivo({
                   cuidarInputMoeda(e);
                 }}
               />
-          <p className="novoClienteErroObjetivo">{erroInicial}</p>
+              <p className="novoClienteErroObjetivo">{erroInicial}</p>
             </label>
             <label className="novoClienteFormLabel">
               Valor da parcela
@@ -349,10 +339,17 @@ export default function NovoClientePessoaisAnaliseObjetivo({
                   cuidarInputMoeda(e);
                 }}
               />
-          <p className="novoClienteErroObjetivo">{erroParcela}</p>
+              <p className="novoClienteErroObjetivo">{erroParcela}</p>
             </label>
           </form>
         </section>
+      <button
+        type="submit"
+        className="novoClientePAOBotoesBotao"
+        onClick={cuidarClick}
+      >
+        Próximo
+      </button>
       </div>
     </>
   );

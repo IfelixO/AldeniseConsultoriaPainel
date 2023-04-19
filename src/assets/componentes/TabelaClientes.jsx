@@ -10,12 +10,14 @@ export default function Tabela({
   definirPesquisa,
 }) {
   const [usuarios, setUsuarios] = useState([]);
+  const [renderiza, setRenderiza] = useState(true);
 
   function listar() {
     api
       .get("usuario/listar")
       .then((res) => {
         setUsuarios(res.data);
+        setRenderiza(false)
       })
       .catch((err) => {
         console.log(err);
@@ -27,6 +29,8 @@ export default function Tabela({
   }, []);
 
   return (
+    <>
+    
     <table className="clientesTabela">
       <thead className="clientesTabelaCabecalho">
         <tr>
@@ -55,6 +59,13 @@ export default function Tabela({
               id="ordem-ocupacao"
             />
           </th>
+          <th className="clientesTabelaCabecalhoItem">
+            Código
+            <TbMenuOrder
+              className="clientesTabelaCabecalhoItemOrdenar"
+              id="ordem-codigo"
+            />
+          </th>
           <th className="clientesTabelaCabecalhoAcoes">Dashboard</th>
         </tr>
       </thead>
@@ -68,6 +79,7 @@ export default function Tabela({
                   <td className="clientesTabelaCorpoItem">{el.email}</td>
                   <td className="clientesTabelaCorpoItem">{el.telefone} </td>
                   <td className="clientesTabelaCorpoItem">{el.saude} </td>
+                  <td className="clientesTabelaCorpoItem">{el.codigo} </td>
                   <td className="clientesTabelaCorpoAcoes">
                     <MdDashboard
                       className="clientesTabelaCorpoAcoesBt"
@@ -86,6 +98,7 @@ export default function Tabela({
                 <td className="clientesTabelaCorpoItem">{el.email}</td>
                 <td className="clientesTabelaCorpoItem">{el.telefone} </td>
                 <td className="clientesTabelaCorpoItem">{el.saude} </td>
+                <td className="clientesTabelaCorpoItem">{el.codigo} </td>
                 <td className="clientesTabelaCorpoAcoes">
                   <MdDashboard
                     className="clientesTabelaCorpoAcoesBt"
@@ -100,5 +113,9 @@ export default function Tabela({
         })}
       </tbody>
     </table>
+      {renderiza ? 
+      <p className="clientesTabelaCarregando">Buscando clientes...</p>
+    :null}
+    </>
   );
 }

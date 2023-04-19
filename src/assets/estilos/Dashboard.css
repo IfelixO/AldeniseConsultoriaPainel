@@ -134,6 +134,10 @@
   border-radius: 10px;
 }
 
+.dashboardObjetivoGraficoLegenda {
+  width: 70px;
+}
+
 .dashboardObjetivoParcela {
   margin-top: 10px;
   width: 90%;
@@ -141,61 +145,61 @@
   justify-content: space-between;
 }
 
-#cor1 {
+#cor2 {
   background-color: #3366CC;
   width: 20px;
   height: 20px;
 }
 
-#cor2 {
+#cor3 {
   background-color: #DC3912;
   width: 20px;
   height: 20px;
 }
 
-#cor3 {
+#cor4 {
   background-color: #FF9900;
   width: 20px;
   height: 20px;
 }
 
-#cor4 {
+#cor5 {
   background-color: #109618;
   width: 20px;
   height: 20px;
 }
 
-#cor5 {
+#cor6 {
   background-color: #990099;
   width: 20px;
   height: 20px;
 }
 
-#cor6 {
+#cor7 {
   background-color: #0099C6;
   width: 20px;
   height: 20px;
 }
 
-#cor7 {
+#cor8 {
   background-color: #DD4477;
   width: 20px;
   height: 20px;
 }
 
-#cor8 {
+#cor9 {
   background-color: #66AA00;
   width: 20px;
   height: 20px;
 }
 
-#cor9 {
+#cor10 {
   background-color: #B82E2E;
   width: 20px;
   height: 20px;
 }
 
-#cor10 {
+#cor11 {
   background-color: #316395;
   width: 20px;
   height: 20px;

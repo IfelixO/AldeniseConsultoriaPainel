@@ -120,7 +120,7 @@ export default function Dashboard({ cuidarDashboardSair, cliente }) {
                 currency: "BRL",
               })
             );
-            setPorcentagemMeta(soma / (final / 100) + "%");
+            setPorcentagemMeta(soma / (final / 100));
             setEntradasConst(entradasArray);
             api
               .put("custos/listarADM", data)
@@ -128,14 +128,14 @@ export default function Dashboard({ cuidarDashboardSair, cliente }) {
                 let conversaoC = Object.keys(resC.data).map((key) => {
                   return [String(key), resC.data[key]];
                 });
-                let custosArrayValores = [];
+                let custosArray = [];
                 conversaoC.forEach((el, i) => {
-                  custosArrayValores[i] = conversaoC[i][1];
+                  custosArray[i] = conversaoC[i][1];
                 });
                 let valores = [];
-                custosArrayValores.forEach((el, i) => {
+                custosArray.forEach((el, i) => {
                   let separacao;
-                  if (i > 1 && el != "") {
+                  if (i > 2 && el != "") {
                     separacao = el.split("- ");
                     let valor = separacao[1];
                     valor = valor.replace("R$ ", "");
@@ -144,15 +144,16 @@ export default function Dashboard({ cuidarDashboardSair, cliente }) {
                     valores.push(Number(valor));
                   }
                 });
-                let nomes = custosArrayValores.map((el, i) => {
-                  let separacao;
-                  if (i > 1 && el != "") {
-                    separacao = el.split("- ");
-                    return separacao[0];
-                  }
-                });
-                setReceita(custosArrayValores.splice(1, 1));
-                setDespesasConst(custosArrayValores);
+                let nomes = []
+                custosArray.forEach((el, i)=>{
+                  if (i > 2 && el != "") {
+                      let separacao;
+                      separacao = el.split(" - ");
+                      nomes.push(separacao[0]) ;
+                    }
+                  })
+                setReceita(custosArray.splice(2, 1));
+                setDespesasConst(custosArray);
                 setDespesasConstNomes(nomes);
                 setDespesasConstValores(valores);
               })
@@ -337,10 +338,10 @@ export default function Dashboard({ cuidarDashboardSair, cliente }) {
             <div className="dashboardObjetivoGraficoFundo">
               <div
                 className="dashboardObjetivoGraficoProgressao"
-                style={{ width: porcentagemMeta }}
+                style={{ width: porcentagemMeta + "%" }}
               ></div>
             </div>
-            <p className="dashboardObjetivoGraficoLegenda">{porcentagemMeta}</p>
+            <p className="dashboardObjetivoGraficoLegenda">{porcentagemMeta.toFixed(2)} %</p>
           </div>
           {entradasConst.map((el, i) => {
             if (i > 0 && el != "") {
@@ -367,16 +368,16 @@ export default function Dashboard({ cuidarDashboardSair, cliente }) {
               chartType="PieChart"
               data={[
                 ["Gráfico", "Mapa de Custos"],
-                [despesasConstNomes[2], despesasConstValores[0]],
-                [despesasConstNomes[3], despesasConstValores[1]],
-                [despesasConstNomes[4], despesasConstValores[2]],
-                [despesasConstNomes[5], despesasConstValores[3]],
-                [despesasConstNomes[6], despesasConstValores[4]],
-                [despesasConstNomes[7], despesasConstValores[5]],
-                [despesasConstNomes[8], despesasConstValores[6]],
-                [despesasConstNomes[9], despesasConstValores[7]],
-                [despesasConstNomes[10], despesasConstValores[8]],
-                [despesasConstNomes[11], despesasConstValores[9]],
+                [despesasConstNomes[0], despesasConstValores[0]],
+                [despesasConstNomes[1], despesasConstValores[1]],
+                [despesasConstNomes[2], despesasConstValores[2]],
+                [despesasConstNomes[3], despesasConstValores[3]],
+                [despesasConstNomes[4], despesasConstValores[4]],
+                [despesasConstNomes[5], despesasConstValores[5]],
+                [despesasConstNomes[6], despesasConstValores[6]],
+                [despesasConstNomes[7], despesasConstValores[7]],
+                [despesasConstNomes[8], despesasConstValores[8]],
+                [despesasConstNomes[9], despesasConstValores[9]],
               ]}
               options={{ legend: "none" }}
             />
@@ -386,7 +387,7 @@ export default function Dashboard({ cuidarDashboardSair, cliente }) {
             <p className="dashboardMapaRendaValor">{receita}</p>
           </div>
           {despesasConst.map((el, i) => {
-            if (i > 0 && el != " - ") {
+            if (i > 1 && el != " - ") {
               let id = "cor" + i;
               let separacao = el.split(" - ");
               return (

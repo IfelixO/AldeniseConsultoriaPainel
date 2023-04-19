@@ -14,6 +14,7 @@ export default function Clientes() {
   const [pesquisa, setPesquisa] = useState('');
   const [definirPesquisa, setDefinePesquisa] = useState(false);
 
+
   function cuidarNovoClienteMostrar() {
     setAddVisibilidade(true);
   }

@@ -8,8 +8,8 @@ import api from "../services/api";
 export default function NovoCliente({ cuidarNovoClienteEsconder }) {
   const [pag, setPag] = useState(1);
   const [codigo, setCodigo] = useState("");
+  const [valoresAnaliseNovo, setValoresPessoaisNovo] = useState({});
   const [valoresPessoais, setValoresPessoais] = useState({});
-  const [valoresAnalise, setValoresAnalise] = useState({});
   const [valoresObjetivo, setValoresObjetivo] = useState({});
   const [valoresFinanceiros, setValoresFinanceiros] = useState({
     tituloDespesa10: "",
@@ -96,33 +96,33 @@ export default function NovoCliente({ cuidarNovoClienteEsconder }) {
       Number(despesa10) ? (soma = soma + Number(despesa10)) : null;
     }
     let porc = soma / (receita / 100);
-    let estado  
+    let estado;
     if (porc > 85) {
-      estado = "Alerta vermelho"
+      estado = "Alerta vermelho";
     }
     if (porc >= 70 && porc < 85) {
-      estado = "Muito baixa"
+      estado = "Muito baixa";
     }
     if (porc >= 55 && porc < 70) {
-      estado = "Baixa"
+      estado = "Baixa";
     }
     if (porc >= 40 && porc < 55) {
-      estado = "Razoável"
+      estado = "Razoável";
     }
     if (porc >= 25 && porc < 40) {
-      estado = "Alta"
+      estado = "Alta";
     }
     if (porc >= 10 && porc < 25) {
-      estado = "Muito alta"
+      estado = "Muito alta";
     }
     if (porc <= 10) {
-      estado = "Excelente"
+      estado = "Excelente";
     }
-    setEstado(estado)
-    return estado
+    setEstado(estado);
+    return estado;
   }
 
-  const cuidarProxima = () => {
+  const cuidarProxima = (valoresAnalise) => {
     let erro = false;
     if (valoresObjetivo.motivacao) {
       setErroMotivacao(null);
@@ -156,15 +156,16 @@ export default function NovoCliente({ cuidarNovoClienteEsconder }) {
       setErroOcupacao("Preencha a ocupação corretamente");
     }
     if (
-      valoresAnalise.tubarao ||
-      valoresAnalise.gato ||
-      valoresAnalise.lobo ||
-      valoresAnalise.aguia
+      !valoresAnalise.tubarao &&
+      !valoresAnalise.gato &&
+      !valoresAnalise.lobo &&
+      !valoresAnalise.aguia
     ) {
-      setErroGrafico(null);
-    } else {
       erro = true;
       setErroGrafico("Preencha os valores corretamente");
+    } else {
+      setValoresPessoaisNovo(valoresAnalise);
+      setErroGrafico(null);
     }
     if (valoresObjetivo.titulo) {
       setErroTitulo(null);
@@ -266,22 +267,22 @@ export default function NovoCliente({ cuidarNovoClienteEsconder }) {
     }
 
     if (!erro) {
-      
       let dataUsuario = {
         nome: valoresPessoais.nome,
         email: valoresPessoais.email,
         telefone: valoresPessoais.telefone,
         ocupacao: valoresPessoais.ocupacao,
-        disc: JSON.stringify(valoresAnalise),
-        saude: calcularSaude()
+        disc: JSON.stringify(valoresAnaliseNovo),
+        saude: calcularSaude(),
       };
       api
         .post("usuario/adicionar", dataUsuario)
         .then((resU) => {
           let idObj = { id: resU.data.id };
+          console.log(idObj);
           setCodigo(resU.data.codigo);
           let dataCustos = {
-            id: idObj.id,
+            usuario: idObj.id,
             receita: valoresFinanceiros.receita,
             despesa1:
               valoresFinanceiros.tituloDespesa1 +
@@ -324,14 +325,14 @@ export default function NovoCliente({ cuidarNovoClienteEsconder }) {
               " - " +
               valoresFinanceiros.valorDespesa10,
           };
-          let dataMeta ={
-            id: idObj.id,
+          let dataMeta = {
+            usuario: idObj.id,
             titulo: valoresObjetivo.titulo,
             motivacao: valoresObjetivo.motivacao,
             final: valoresObjetivo.valorFinal,
             inicial: valoresObjetivo.valorInicial,
             parcela: valoresObjetivo.valorParcela,
-          }
+          };
           api
             .post("custos/adicionarADM", dataCustos)
             .then((resC) => {
@@ -344,7 +345,11 @@ export default function NovoCliente({ cuidarNovoClienteEsconder }) {
                       api
                         .post("movimentacoes/adicionarADM", idObj)
                         .then((resMo) => {
-                          setPag(3);
+                          api
+                            .post("anotacoes/adicionarADM", idObj)
+                            .then((resA) => {
+                              // setPag(3);
+                            });
                         })
                         .catch((errMo) => {
                           console.log(errMo);
@@ -392,7 +397,7 @@ export default function NovoCliente({ cuidarNovoClienteEsconder }) {
             erroMotivacao={erroMotivacao}
             setValoresPessoais={setValoresPessoais}
             setValoresObjetivo={setValoresObjetivo}
-            setValoresAnalise={setValoresAnalise}
+            cuidarProxima={cuidarProxima}
           />
         ) : null}
         {pag == 2 ? (
@@ -407,7 +412,7 @@ export default function NovoCliente({ cuidarNovoClienteEsconder }) {
             codigo={codigo}
             valoresPessoais={valoresPessoais}
             valoresObjetivo={valoresObjetivo}
-            valoresAnalise={valoresAnalise}
+            valoresAnalise={valoresAnaliseNovo}
             valoresFinanceiros={valoresFinanceiros}
             estadoSaude={estadoSaude}
           />
@@ -420,15 +425,6 @@ export default function NovoCliente({ cuidarNovoClienteEsconder }) {
               onClick={cuidarNovoClienteEsconder}
             >
               Cancelar
-            </button>
-          ) : null}
-          {pag == 1 ? (
-            <button
-              type="submit"
-              className="novoClienteBotoesBotao"
-              onClick={cuidarProxima}
-            >
-              Próximo
             </button>
           ) : null}
           {pag == 2 ? (
