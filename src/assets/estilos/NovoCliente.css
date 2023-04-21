@@ -1,10 +1,10 @@
   .novoClienteFundo {
     background-color: rgba(0, 0, 0, 0.507);
-    position: absolute;
+    position: fixed;
     top: 0;
     left: 17vw;
     width: 83vw;
-    height: 100vh;
+    min-height: 100%;
     z-index: 2;
   }
   
