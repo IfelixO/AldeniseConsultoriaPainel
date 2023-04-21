@@ -348,7 +348,7 @@ export default function NovoCliente({ cuidarNovoClienteEsconder }) {
                           api
                             .post("anotacoes/adicionarADM", idObj)
                             .then((resA) => {
-                              // setPag(3);
+                              setPag(3);
                             });
                         })
                         .catch((errMo) => {
