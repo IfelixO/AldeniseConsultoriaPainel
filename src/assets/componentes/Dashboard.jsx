@@ -37,6 +37,7 @@ export default function Dashboard({ cuidarDashboardSair, cliente }) {
   const [despesasConst, setDespesasConst] = useState([]);
   const [despesasConstNomes, setDespesasConstNomes] = useState([]);
   const [despesasConstValores, setDespesasConstValores] = useState([]);
+  const [despesasSobra, setDespesasSobra] = useState([]);
 
   const [grafico, setGrafico] = useState(termo0);
   const [agulha, setAgulha] = useState();
@@ -46,6 +47,7 @@ export default function Dashboard({ cuidarDashboardSair, cliente }) {
   );
   const [confirmaA, setConfirmaA] = useState(false);
   const [confirmaS, setConfirmaS] = useState(false);
+  const [renderiza, setRenderiza] = useState(true);
 
   function cuidarDescricaoS() {
     let data = {
@@ -87,10 +89,10 @@ export default function Dashboard({ cuidarDashboardSair, cliente }) {
       .put("meta/listarADM", data)
       .then((resMe) => {
         let final = resMe.data.final.replace(".", "");
-        final = final.replace("R$ ", "");
-        final = final.replace(",", ".");
+        final = final.replace("R$", "");
+        final = Number(final.replace(",", "."));
         let inicial = resMe.data.inicial.replace(".", "");
-        inicial = inicial.replace("R$ ", "");
+        inicial = inicial.replace("R$", "");
         let soma = Number(inicial.replace(",", "."));
         setFinalMeta(resMe.data.final);
         api
@@ -99,28 +101,33 @@ export default function Dashboard({ cuidarDashboardSair, cliente }) {
             let conversaoP = Object.keys(resP.data).map((key) => {
               return [String(key), resP.data[key]];
             });
-            let entradasArray = conversaoP.map((el, i) => {
-              return el[1];
+            let entradasArray = [];
+            conversaoP.forEach((el, i) => {
+              if (el[1] != "" && i > 1) entradasArray.push(el[1]);
             });
             let valores = entradasArray.map((el, i) => {
               let separacao;
-              if (i > 0 && el != "") {
-                separacao = el.split("- ");
+              if (el != "") {
+                separacao = el.split("-");
                 return separacao[1];
               }
             });
-            valores.forEach((el, i) => {
-              {
-                i != 0 && el ? (soma = soma + Number(el)) : null;
-              }
-            });
+            if (valores[0]) {
+              valores.forEach((el, i) => {
+                soma = soma + Number(el);
+              });
+            }
             setProgressaoMeta(
               soma.toLocaleString("pt-BR", {
                 style: "currency",
                 currency: "BRL",
               })
             );
-            setPorcentagemMeta(soma / (final / 100));
+            if (soma / (final / 100) > 100) {
+              setPorcentagemMeta(100);
+            } else {
+              setPorcentagemMeta(soma / (final / 100));
+            }
             setEntradasConst(entradasArray);
             api
               .put("custos/listarADM", data)
@@ -130,32 +137,43 @@ export default function Dashboard({ cuidarDashboardSair, cliente }) {
                 });
                 let custosArray = [];
                 conversaoC.forEach((el, i) => {
-                  custosArray[i] = conversaoC[i][1];
+                  if (el[1] != "" && el[1] != " - ") custosArray.push(el[1]);
                 });
                 let valores = [];
                 custosArray.forEach((el, i) => {
                   let separacao;
-                  if (i > 2 && el != "") {
-                    separacao = el.split("- ");
+                  if (i > 2) {
+                    separacao = el.split("-");
                     let valor = separacao[1];
-                    valor = valor.replace("R$ ", "");
+                    valor = valor.replace("R$", "");
                     valor = valor.replace(".", "");
                     valor = valor.replace(",", ".");
                     valores.push(Number(valor));
                   }
                 });
-                let nomes = []
-                custosArray.forEach((el, i)=>{
-                  if (i > 2 && el != "") {
-                      let separacao;
-                      separacao = el.split(" - ");
-                      nomes.push(separacao[0]) ;
-                    }
-                  })
+                let somaDespesas = 0
+                valores.forEach((el, i)=>{
+                  somaDespesas = somaDespesas + el
+                })
+                let nomes = [];
+                custosArray.forEach((el, i) => {
+                  if (i > 2) {
+                    let separacao;
+                    separacao = el.split("-");
+                    nomes.push(separacao[0]);
+                  }
+                });
+                if(somaDespesas > 100){
+                  setDespesasSobra(['Sobra', 0])
+                } else {
+                  setDespesasSobra(['Sobra', 100 - somaDespesas])
+
+                }
                 setReceita(custosArray.splice(2, 1));
                 setDespesasConst(custosArray);
                 setDespesasConstNomes(nomes);
                 setDespesasConstValores(valores);
+                setRenderiza(false)
               })
               .catch((errC) => {
                 console.log(errC);
@@ -265,6 +283,14 @@ export default function Dashboard({ cuidarDashboardSair, cliente }) {
         Voltar
       </button>
       <h1 className="dashboardTitulo">Cliente {cliente.nome} </h1>
+      {renderiza ? 
+        <section className="dashboardSkeleton">
+          <div className="dashboardSkeletonColuna"></div>
+          <div className="dashboardSkeletonColuna"></div>
+          <div className="dashboardSkeletonColuna"></div>
+          <div className="dashboardSkeletonColuna"></div>
+        </section>
+    : 
       <section className="dashboard">
         <div className="dashboardColuna">
           <h2 className="dashboardColunaTitulo">Análise Comportamental</h2>
@@ -341,10 +367,12 @@ export default function Dashboard({ cuidarDashboardSair, cliente }) {
                 style={{ width: porcentagemMeta + "%" }}
               ></div>
             </div>
-            <p className="dashboardObjetivoGraficoLegenda">{porcentagemMeta.toFixed(2)} %</p>
+            <p className="dashboardObjetivoGraficoLegenda">
+              {porcentagemMeta.toFixed(2)} %
+            </p>
           </div>
           {entradasConst.map((el, i) => {
-            if (i > 0 && el != "") {
+            if (i > 0 && el != "" && el) {
               let separacao = el.split(" - ");
               let valor = Number(separacao[1]).toLocaleString("pt-BR", {
                 style: "currency",
@@ -378,6 +406,7 @@ export default function Dashboard({ cuidarDashboardSair, cliente }) {
                 [despesasConstNomes[7], despesasConstValores[7]],
                 [despesasConstNomes[8], despesasConstValores[8]],
                 [despesasConstNomes[9], despesasConstValores[9]],
+                [despesasSobra[0], despesasSobra[1]]
               ]}
               options={{ legend: "none" }}
             />
@@ -387,7 +416,7 @@ export default function Dashboard({ cuidarDashboardSair, cliente }) {
             <p className="dashboardMapaRendaValor">{receita}</p>
           </div>
           {despesasConst.map((el, i) => {
-            if (i > 1 && el != " - ") {
+            if (i > 1) {
               let id = "cor" + i;
               let separacao = el.split(" - ");
               return (
@@ -434,12 +463,12 @@ export default function Dashboard({ cuidarDashboardSair, cliente }) {
                 size={20}
                 className="dashboardDescricaoCheck"
               />
-            ) : (
-              null
-            )}
+            ) : null}
           </div>
         </div>
       </section>
+    
+    }
     </section>
   );
 }

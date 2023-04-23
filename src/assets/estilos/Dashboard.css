@@ -2,7 +2,8 @@
   position: absolute;
   top: 0;
   left: 17vw;
-  height: 100vh;
+  height: 100%;
+  /* background-color: rgba(0, 58, 54, 0.15); */
   width: 83vw;
   padding: 70px 100px;
 }
@@ -26,6 +27,38 @@
 
 .dashboardTitulo {
   font-size: 1.2rem;
+}
+
+.dashboardSkeleton {
+  display: flex;
+  justify-content: space-between;
+  gap: 30px;
+  width: 100%;
+  margin-top: 10px;
+}
+
+@keyframes animate {
+  from {
+    background-position: 0px;
+  }
+  to {
+    background-position: 980px;
+  }
+}
+
+.dashboardSkeletonColuna {
+  background: linear-gradient(90deg, black, gray, black);
+  opacity: 0.4;
+  flex: 1;
+  height: fit-content;
+  border-radius: 5px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 15px 30px;
+  box-shadow: 0 0 5px 2px gray;
+  height: 70vh;
+  animation: animate 6s ease infinite;
 }
 
 .dashboard {
@@ -84,22 +117,20 @@
 .dashboardAnaliseGraficoDadoCorTubarao {
   width: 20px;
   height: 20px;
-  background-color: #3366CC;
+  background-color: #3366cc;
 }
 
 .dashboardAnaliseGraficoDadoCorGato {
   width: 20px;
   height: 20px;
-  background-color: #DC3912;
+  background-color: #dc3912;
 }
-
 
 .dashboardAnaliseGraficoDadoCorLobo {
   width: 20px;
   height: 20px;
-  background-color: #FF9900;
+  background-color: #ff9900;
 }
-
 
 .dashboardAnaliseGraficoDadoCorAguia {
   width: 20px;
@@ -107,10 +138,9 @@
   background-color: #109618;
 }
 
-
 .dashboardAnaliseGraficoDadoTitulo {
-    width: 80px;
-    font-size: 1rem;
+  width: 80px;
+  font-size: 1rem;
 }
 
 .dashboardObjetivoGrafico {
@@ -146,19 +176,19 @@
 }
 
 #cor2 {
-  background-color: #3366CC;
+  background-color: #3366cc;
   width: 20px;
   height: 20px;
 }
 
 #cor3 {
-  background-color: #DC3912;
+  background-color: #dc3912;
   width: 20px;
   height: 20px;
 }
 
 #cor4 {
-  background-color: #FF9900;
+  background-color: #ff9900;
   width: 20px;
   height: 20px;
 }
@@ -176,25 +206,25 @@
 }
 
 #cor7 {
-  background-color: #0099C6;
+  background-color: #0099c6;
   width: 20px;
   height: 20px;
 }
 
 #cor8 {
-  background-color: #DD4477;
+  background-color: #dd4477;
   width: 20px;
   height: 20px;
 }
 
 #cor9 {
-  background-color: #66AA00;
+  background-color: #66aa00;
   width: 20px;
   height: 20px;
 }
 
 #cor10 {
-  background-color: #B82E2E;
+  background-color: #b82e2e;
   width: 20px;
   height: 20px;
 }
@@ -223,8 +253,7 @@
 
 .dashboardMapaDespesaTitulo {
   text-align: left;
-  flex: 2
-
+  flex: 2;
 }
 
 .dashboardColunaSaudeGrafico {

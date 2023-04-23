@@ -1,9 +1,11 @@
+.clientesTela {
+  height: 100vh;
+}
+
 .clientesConteudo {
+  min-height: 100%;
   margin-left: 17vw;
-  min-height: 100vh;
-  height: 100%;
   background-color: rgba(0, 58, 54, 0.15);
   padding: 70px 100px;
   z-index: 1;
 }
-
