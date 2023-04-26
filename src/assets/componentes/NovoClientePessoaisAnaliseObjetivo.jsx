@@ -24,6 +24,10 @@ export default function NovoClientePessoaisAnaliseObjetivo({
   const [loboPorc, setLoboPorc] = useState(0);
   const [aguiaPorc, setAguiaPorc] = useState(0);
   const [valoresAnalise, setValoresAnalise] = useState({});
+  const [valorParcela, setValorParcela] = useState(0);
+  const [valorFinal, setValorFinal] = useState(0);
+  const [valorInicial, setValorInicial] = useState(0);
+  const [tempo, setTempo] = useState(0);
 
   const cuidarInsercaoDadosPessoais = (e) => {
     setValoresPessoais((prev) => ({
@@ -42,7 +46,15 @@ export default function NovoClientePessoaisAnaliseObjetivo({
   const cuidarInputMoeda = (e) => {
     let valor = e.target.value;
     valor = valor.replace(/\D/g, "");
-    if (Number(valor)) {
+    if (e.target.name == "valorFinal") {
+      let final = valor.replace(/(\d)(\d{2})$/, "$1.$2");
+      setValorFinal(Number(final));
+    }
+    if (e.target.name == "valorInicial") {
+      let inicial = valor.replace(/(\d)(\d{2})$/, "$1.$2");
+      setValorInicial(Number(inicial));
+    }
+    if (Number(valor) || Number(valor) == 0) {
       valor = valor.replace(/(\d)(\d{2})$/, "$1,$2");
       valor = valor.replace(/(?=(\d{3})+(\D))\B/g, ".");
       valor = "R$ " + valor;
@@ -71,18 +83,35 @@ export default function NovoClientePessoaisAnaliseObjetivo({
     return e;
   };
 
+  const calcularParcela = () => {
+    if (valorFinal > 0 && tempo > 0) {
+      setValorParcela((valorFinal-valorInicial) / tempo);
+    } else {
+      setValorParcela(0);
+    }
+    setValoresObjetivo((prev) => ({
+      ...prev,
+      ['valorParcela']: (valorFinal-valorInicial) / tempo,
+    }));
+  };
+
   const cuidarClick = () => {
     cuidarProxima(valoresAnalise);
   };
-  
-  useEffect(()=>{
+
+  useEffect(() => {
     setValoresAnalise({
       tubarao: tubaraoPorc,
       gato: gatoPorc,
       lobo: loboPorc,
       aguia: aguiaPorc,
     });
-  },[aguiaPorc, tubaraoPorc, gatoPorc, loboPorc])
+  }, [aguiaPorc, tubaraoPorc, gatoPorc, loboPorc]);
+
+  useEffect(()=>{
+    calcularParcela();
+
+  }, [tempo, valorFinal])
 
   return (
     <>
@@ -257,7 +286,7 @@ export default function NovoClientePessoaisAnaliseObjetivo({
           <h2 className="novoClienteFormTitulo">Objetivo Guia</h2>
           <form className="novoClienteObjetivoForm" id="objetivo">
             <label className="novoClienteFormLabel">
-              Título
+              Meta
               <input
                 required
                 type="text"
@@ -325,9 +354,31 @@ export default function NovoClientePessoaisAnaliseObjetivo({
               <p className="novoClienteErroObjetivo">{erroInicial}</p>
             </label>
             <label className="novoClienteFormLabel">
-              Valor da parcela
+              Prazo (meses)
               <input
                 required
+                type="number"
+                className="novoClienteObjetivoFormInput"
+                id="previsao"
+                name="previsao"
+                form="objetivo"
+                tabIndex={12}
+                maxLength={20}
+                onChange={(e) => {
+                  cuidarInsercaoDadosObjetivo(e);
+                  setTempo(e.target.value);
+                }}
+              />
+              <p className="novoClienteErroObjetivo">{erroParcela}</p>
+            </label>
+            <label className="novoClienteFormLabel">
+              Valor da parcela
+              <input
+                disabled
+                value= {valorParcela.toLocaleString("pt-BR", {
+                  style: "currency",
+                  currency: "BRL",
+                })}
                 type="text"
                 className="novoClienteObjetivoFormInput"
                 id="valorParcela"
@@ -339,17 +390,16 @@ export default function NovoClientePessoaisAnaliseObjetivo({
                   cuidarInputMoeda(e);
                 }}
               />
-              <p className="novoClienteErroObjetivo">{erroParcela}</p>
             </label>
           </form>
         </section>
-      <button
-        type="submit"
-        className="novoClientePAOBotoesBotao"
-        onClick={cuidarClick}
-      >
-        Próximo
-      </button>
+        <button
+          type="submit"
+          className="novoClientePAOBotoesBotao"
+          onClick={cuidarClick}
+        >
+          Próximo
+        </button>
       </div>
     </>
   );

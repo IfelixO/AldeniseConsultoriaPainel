@@ -429,7 +429,7 @@ export default function Dashboard({ cuidarDashboardSair, cliente }) {
             }
           })}
         </div>
-        <div className="dashboardColuna">
+        <div className="dashboardColuna" id="colunaSaude">
           <h2 className="dashboardColunaTitulo">Saúde financeira</h2>
           <div className="dashboardColunaSaudeGrafico">
             <img src={grafico} alt="" className="dashboardGraficoSaude" />

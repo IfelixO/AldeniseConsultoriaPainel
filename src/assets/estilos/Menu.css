@@ -1,4 +1,5 @@
 .clientesMenu {
+    min-width: min-content;
     width: 17vw;
     height: 100vh;
     background-color: #003a36;

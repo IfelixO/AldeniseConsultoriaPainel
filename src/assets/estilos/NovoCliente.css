@@ -11,11 +11,14 @@
   .novoClienteModal {
     background-color: white;
     top: 10vh;
-    left: 31vw;
+    left: 30vw;
+    min-width: max-content;
     width: 912px;
+    min-height: fit-content;
     height: 80vh;
-    position: absolute;
+    position: fixed;
     z-index: 3;
+    overflow-y: scroll;
   }
   
   .novoClienteCabecalho {
@@ -41,20 +44,11 @@
   }
     
   .novoClienteBotoes {
-    position: absolute;
+    /* position: absolute;
     bottom: 30px;
-    right: 30px;
-  }
-  
-  .novoClienteBotoesBotao {
-    padding: 10px 15px;
-    background-color: #003a36;
-    color: white;
-    font-weight: bold;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    margin-left: -100px;
+    right: 30px; */
+    display: flex;
+    justify-content: right;
   }
   
   .novoClienteBotoesCancelar {
@@ -63,5 +57,22 @@
     font-weight: bold;
     border: none;
     cursor: pointer;
-    margin-right: 100px;
+    margin: -100px 115px 0 0 ;
   }
+
+  .novoClienteCBotoesBotao {
+    padding: 10px 15px;
+    height: fit-content;
+    background-color: #003a36;
+    color: white;
+    font-weight: bold;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin: -70px 30px;
+  }
+  
+
+/* 
+Primeira quebra
+  1100 */

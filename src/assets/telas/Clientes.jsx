@@ -14,6 +14,8 @@ export default function Clientes() {
   const [pesquisa, setPesquisa] = useState('');
   const [definirPesquisa, setDefinePesquisa] = useState(false);
 
+  const [atualiza, setAtualiza] = useState(false);
+
 
   function cuidarNovoClienteMostrar() {
     setAddVisibilidade(true);
@@ -21,6 +23,7 @@ export default function Clientes() {
 
   function cuidarNovoClienteEsconder() {
     setAddVisibilidade(false);
+    setAtualiza(true)
   }
 
   function cuidarDashboardEntrar(el) {
@@ -41,20 +44,21 @@ export default function Clientes() {
       <Menu />
       <section className="clientesConteudo">
         {addVisibilidade ? (
-          <NovoCliente cuidarNovoClienteEsconder={cuidarNovoClienteEsconder} />
-        ) : null}
+          <NovoCliente setAtualiza={setAtualiza} cuidarNovoClienteEsconder={cuidarNovoClienteEsconder} />
+          ) : null}
         {dashboardVisibilidade ? (
           <Dashboard
-            cliente={cliente}
-            cuidarDashboardSair={cuidarDashboardSair}
+          cliente={cliente}
+          cuidarDashboardSair={cuidarDashboardSair}
           />
         ) : (
           <>
             <Cabecalho setDefinePesquisa={setDefinePesquisa} setPesquisa={setPesquisa} cuidarNovoClienteMostrar={cuidarNovoClienteMostrar} />
-            <Tabela pesquisa={pesquisa} definirPesquisa={definirPesquisa} cuidarDashboardEntrar={cuidarDashboardEntrar} />
+            <Tabela atualiza={atualiza} pesquisa={pesquisa} definirPesquisa={definirPesquisa} cuidarDashboardEntrar={cuidarDashboardEntrar} />
           </>
         )}
       </section>
+      {/* <div className="clientesFundo"></div> */}
     </section>
   );
 }

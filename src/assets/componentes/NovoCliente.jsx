@@ -1,11 +1,11 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import NovoClientePessoaisAnaliseObjetivo from "./NovoClientePessoaisAnaliseObjetivo";
 import NovoClienteFinanceiros from "./NovoClienteFinanceiros";
 import NovoClienteCodigo from "./NovoClienteCodigo";
 import "../estilos/NovoCliente.css";
 import api from "../services/api";
 
-export default function NovoCliente({ cuidarNovoClienteEsconder }) {
+export default function NovoCliente({ cuidarNovoClienteEsconder}) {
   const [pag, setPag] = useState(1);
   const [codigo, setCodigo] = useState("");
   const [valoresAnaliseNovo, setValoresPessoaisNovo] = useState({});
@@ -44,6 +44,9 @@ export default function NovoCliente({ cuidarNovoClienteEsconder }) {
   const [erroReceita, setErroReceita] = useState(null);
   const [erroDespesas, setErroDespesas] = useState(null);
   const [estadoSaude, setEstado] = useState();
+  const [espacoEsquerda, setEspacoEsquerda] = useState();
+  const [espacoTopo, setEspacoTopo] = useState();
+  const { innerWidth: width, innerHeight: height } = window;
 
   function transformarMoeda(el) {
     let valor = el.replace("R$ ", "");
@@ -189,7 +192,7 @@ export default function NovoCliente({ cuidarNovoClienteEsconder }) {
       setErroParcela(null);
     } else {
       erro = true;
-      setErroParcela("Preencha o valor da parcela correntamente");
+      setErroParcela("Defina algum prazo");
     }
     if (!erro) {
       setPag(2);
@@ -279,7 +282,6 @@ export default function NovoCliente({ cuidarNovoClienteEsconder }) {
         .post("usuario/adicionar", dataUsuario)
         .then((resU) => {
           let idObj = { id: resU.data.id };
-          console.log(idObj);
           setCodigo(resU.data.codigo);
           let dataCustos = {
             usuario: idObj.id,
@@ -373,13 +375,21 @@ export default function NovoCliente({ cuidarNovoClienteEsconder }) {
     }
   };
 
+  useEffect(()=>{ 
+    let espacoEsquerda = (width*0.17)+((width*0.83-912)/2)
+    {espacoEsquerda > 200 ?  setEspacoEsquerda(espacoEsquerda) : setEspacoEsquerda(200)}
+    setEspacoTopo(height*0.1)
+  }, [])
+
   return (
     <section className="novoClienteTela">
       <section
         className="novoClienteFundo"
         onClick={cuidarNovoClienteEsconder}
       ></section>
-      <section className="novoClienteModal">
+      <section className="novoClienteModal"
+      style={{left: espacoEsquerda, top: espacoTopo}}
+      >
         <header className="novoClienteCabecalho">
           <h1 className="novoClienteCabecalhoTitulo">Adicionar novo cliente</h1>
         </header>
@@ -405,6 +415,7 @@ export default function NovoCliente({ cuidarNovoClienteEsconder }) {
             setValoresFinanceiros={setValoresFinanceiros}
             erroReceita={erroReceita}
             erroDespesas={erroDespesas}
+            cuidarAddCliente={cuidarAddCliente}
           />
         ) : null}
         {pag == 3 ? (
@@ -427,18 +438,9 @@ export default function NovoCliente({ cuidarNovoClienteEsconder }) {
               Cancelar
             </button>
           ) : null}
-          {pag == 2 ? (
-            <button
-              className="novoClienteBotoesBotao"
-              onClick={cuidarAddCliente}
-            >
-              Adicionar
-            </button>
-          ) : null}
-
           {pag == 3 ? (
             <button
-              className="novoClienteBotoesBotao"
+              className="novoClienteCBotoesBotao"
               onClick={cuidarNovoClienteEsconder}
             >
               Confirmar

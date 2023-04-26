@@ -6,6 +6,7 @@ export default function NovoClienteFinanceiros({
   setValoresFinanceiros,
   erroDespesas,
   erroReceita,
+  cuidarAddCliente,
 }) {
   const cuidarInsercaoDados = (e) => {
     setValoresFinanceiros((prev) => ({
@@ -385,6 +386,15 @@ export default function NovoClienteFinanceiros({
         </div>
         <p className="novoClienteErroFinanceirosDespesas">{erroDespesas}</p>
       </form>
+      <div className="botao">
+        <button
+          type="submit"
+          className="novoClienteFBotoesBotao"
+          onClick={cuidarAddCliente}
+        >
+          Próximo
+        </button>
+      </div>
     </section>
   );
 }

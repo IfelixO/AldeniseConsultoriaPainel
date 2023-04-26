@@ -2,6 +2,7 @@
   display: flex;
   flex-direction: column;
   padding: 0 40px 0 20px;
+  margin-bottom: 100px;
 }
 
 .novoClienteFormLabelFin {
@@ -57,3 +58,19 @@
   text-align: center;
 }
 
+.botao {
+  display: flex;
+  justify-content: right;
+}
+
+.novoClienteFBotoesBotao {
+  padding: 10px 15px;
+  height: fit-content;
+  background-color: #003a36;
+  color: white;
+  font-weight: bold;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  margin: -70px 30px;
+}

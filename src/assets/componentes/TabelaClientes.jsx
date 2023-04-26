@@ -8,6 +8,7 @@ export default function Tabela({
   cuidarDashboardEntrar,
   pesquisa,
   definirPesquisa,
+  atualiza
 }) {
   const [usuarios, setUsuarios] = useState([]);
   const [renderiza, setRenderiza] = useState(true);
@@ -26,7 +27,9 @@ export default function Tabela({
 
   useEffect(() => {
     listar();
-  }, []);
+}, [atualiza]);
+
+
 
   return (
     <>
