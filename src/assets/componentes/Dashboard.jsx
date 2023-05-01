@@ -39,6 +39,7 @@ export default function Dashboard({ cuidarDashboardSair, cliente }) {
   const [despesasConstNomes, setDespesasConstNomes] = useState([]);
   const [despesasConstValores, setDespesasConstValores] = useState([]);
   const [despesasSobra, setDespesasSobra] = useState([]);
+  const [variavel, setVariavel] = useState(0);
 
   const [grafico, setGrafico] = useState(termo0);
   const [agulha, setAgulha] = useState();
@@ -179,7 +180,34 @@ export default function Dashboard({ cuidarDashboardSair, cliente }) {
                 setDespesasConstNomes(nomes);
                 setDespesasConstValores(valores);
 
-                setRenderiza(false);
+                api
+                  .put("movimentacoes/listarADM", data)
+                  .then((resMo) => {
+                    let conversaoMo = Object.keys(resMo.data).map((key) => {
+                      return [String(key), resMo.data[key]];
+                    });
+                    let movimentacoesArray = [];
+                    conversaoMo.forEach((el, i) => {
+                      if (el[1] != "" && el[1] != " - ")
+                        movimentacoesArray.push(el[1]);
+                    });
+                    let valores = [];
+                    movimentacoesArray.forEach((el, i) => {
+                      if (i > 1) {
+                        let separacao = el.split(" - ");
+                        valores.push(Number(separacao[1]));
+                      }
+                    });
+                    let soma = 0;
+                    valores.forEach((el) => {
+                      soma = soma + el;
+                    });
+                    setVariavel(soma);
+                    setRenderiza(false);
+                  })
+                  .catch((err) => {
+                    console.log(err);
+                  });
               })
               .catch((errC) => {
                 console.log(errC);
@@ -407,11 +435,12 @@ export default function Dashboard({ cuidarDashboardSair, cliente }) {
             <h2 className="dashboardColunaTitulo">Mapa de custos</h2>
             <div className="dashboardGraficoPizza">
               <Chart
-                width={"250px"}
-                height={"250px"}
+                width={"300px"}
+                height={"300px"}
                 chartType="PieChart"
                 data={[
                   ["Gráfico", "Mapa de Custos"],
+                  ['Despesa variável', variavel],
                   [despesasConstNomes[0], despesasConstValores[0]],
                   [despesasConstNomes[1], despesasConstValores[1]],
                   [despesasConstNomes[2], despesasConstValores[2]],
@@ -422,6 +451,11 @@ export default function Dashboard({ cuidarDashboardSair, cliente }) {
                   [despesasConstNomes[7], despesasConstValores[7]],
                   [despesasConstNomes[8], despesasConstValores[8]],
                   [despesasConstNomes[9], despesasConstValores[9]],
+                  [despesasConstNomes[10], despesasConstValores[10]],
+                  [despesasConstNomes[11], despesasConstValores[11]],
+                  [despesasConstNomes[12], despesasConstValores[12]],
+                  [despesasConstNomes[13], despesasConstValores[13]],
+                  [despesasConstNomes[14], despesasConstValores[14]],
                   [despesasSobra[0], despesasSobra[1]],
                 ]}
                 options={{ legend: "none" }}
@@ -430,6 +464,16 @@ export default function Dashboard({ cuidarDashboardSair, cliente }) {
             <div className="dashboardMapaRenda">
               <p className="dashboardMapaRendaTitulo">Renda mensal</p>
               <p className="dashboardMapaRendaValor">{receita}</p>
+            </div>
+            <div className="dashboardMapaDespesa">
+              <div className="dashboardMapaDespesaCor" id="cor1"></div>
+              <p className="dashboardMapaDespesaTitulo">Despesa variável</p>
+              <p className="dashboardMapaDespesaValor">
+                {variavel.toLocaleString("pt-BR", {
+                  style: "currency",
+                  currency: "BRL",
+                })}
+              </p>
             </div>
             {despesasConst.map((el, i) => {
               if (i > 1) {

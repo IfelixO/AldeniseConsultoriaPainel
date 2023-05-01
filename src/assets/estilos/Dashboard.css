@@ -174,65 +174,6 @@
   justify-content: space-between;
 }
 
-#cor2 {
-  background-color: #3366cc;
-  width: 20px;
-  height: 20px;
-}
-
-#cor3 {
-  background-color: #dc3912;
-  width: 20px;
-  height: 20px;
-}
-
-#cor4 {
-  background-color: #ff9900;
-  width: 20px;
-  height: 20px;
-}
-
-#cor5 {
-  background-color: #109618;
-  width: 20px;
-  height: 20px;
-}
-
-#cor6 {
-  background-color: #990099;
-  width: 20px;
-  height: 20px;
-}
-
-#cor7 {
-  background-color: #0099c6;
-  width: 20px;
-  height: 20px;
-}
-
-#cor8 {
-  background-color: #dd4477;
-  width: 20px;
-  height: 20px;
-}
-
-#cor9 {
-  background-color: #66aa00;
-  width: 20px;
-  height: 20px;
-}
-
-#cor10 {
-  background-color: #b82e2e;
-  width: 20px;
-  height: 20px;
-}
-
-#cor11 {
-  background-color: #316395;
-  width: 20px;
-  height: 20px;
-}
 
 .dashboradObjetivoCompletouBotao {
   padding: 10px 15px;
@@ -243,6 +184,102 @@
   border-radius: 5px;
   cursor: pointer;
   margin-top: 20px;
+}
+
+#cor1 {
+  background-color: #3366cc;
+  width: 20px;
+  height: 20px;
+}
+
+#cor2 {
+  background-color: #dc3912;
+  width: 20px;
+  height: 20px;
+}
+
+#cor3 {
+  background-color: #ff9900;
+  width: 20px;
+  height: 20px;
+}
+
+#cor4 {
+  background-color: #109618;
+  width: 20px;
+  height: 20px;
+}
+
+#cor5 {
+  background-color: #990099;
+  width: 20px;
+  height: 20px;
+}
+
+#cor6 {
+  background-color: #0099c6;
+  width: 20px;
+  height: 20px;
+}
+
+#cor7 {
+  background-color: #dd4477;
+  width: 20px;
+  height: 20px;
+}
+
+#cor8 {
+  background-color: #66aa00;
+  width: 20px;
+  height: 20px;
+}
+
+#cor9{
+  background-color: #b82e2e;
+  width: 20px;
+  height: 20px;
+}
+
+#cor10 {
+  background-color: #316395;
+  width: 20px;
+  height: 20px;
+}
+
+#cor11 {
+  background-color: #994499;
+  width: 20px;
+  height: 20px;
+}
+
+#cor12 {
+  background-color: #22AA99;
+  width: 20px;
+  height: 20px;
+}
+
+#cor13 {
+  background-color: #AAAA11;
+  width: 20px;
+  height: 20px;
+}
+
+#cor14 {
+  background-color: #6633CC;
+  width: 20px;
+  height: 20px;
+}
+
+#cor15 {
+  background-color: #E67300;
+  width: 20px;
+  height: 20px;
+}
+
+#cor16 {
+  background-color: #8B0707;
+  width: 20px;
+  height: 20px;
 }
 
 .dashboardMapaRenda {
