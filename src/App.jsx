@@ -30,6 +30,7 @@ export default function App() {
         if (res.data.status) {
           navigate("/clientes");
         } else {
+          setCarregando(false)
           setErro("Administrador não encontrado");
         }
       })
