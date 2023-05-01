@@ -234,6 +234,17 @@
   height: 20px;
 }
 
+.dashboradObjetivoCompletouBotao {
+  padding: 10px 15px;
+  background-color: #003a36;
+  color: white;
+  font-weight: bold;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-top: 20px;
+}
+
 .dashboardMapaRenda {
   margin-top: 15px;
   display: flex;

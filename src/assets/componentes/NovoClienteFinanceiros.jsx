@@ -49,13 +49,13 @@ export default function NovoClienteFinanceiros({
           />
           <p className="novoClienteErroFinanceirosReceita">{erroReceita}</p>
         </label>
-        <div className="novoClienteFinanceirosDiv">
-          <label className="novoClienteFormLabelFin">
-            Despesa 1
+        <div className="novoClienteFinanceirosTabela">
+          <div className="novoClienteFinanceirosDiv2">
+            <p className="novoClienteFinanceirosLabel2">Despesa 1</p>
             <input
-              required
               type="text"
-              className="novoClienteFinanceirosFormInput"
+              placeholder="Nome"
+              className="novoClienteFinanceirosFormInput2"
               id="tituloDespesa1"
               name="tituloDespesa1"
               form="financeiros"
@@ -65,14 +65,11 @@ export default function NovoClienteFinanceiros({
                 cuidarInsercaoDados(e);
               }}
             />
-          </label>
-          <label className="novoClienteFormLabelFin">
-            <TbArrowBigRightLinesFilled className="novoClienteFormSeta" />
-            Valor
+            <TbArrowBigRightLinesFilled className="novoClienteFormSeta2" />
             <input
-              required
               type="text"
-              className="novoClienteFinanceirosFormInput"
+              placeholder="Valor"
+              className="novoClienteFinanceirosFormInput3"
               id="valorDespesa1"
               name="valorDespesa1"
               form="financeiros"
@@ -82,14 +79,13 @@ export default function NovoClienteFinanceiros({
                 cuidarInputMoeda(e);
               }}
             />
-          </label>
-        </div>
-        <div className="novoClienteFinanceirosDiv">
-          <label className="novoClienteFormLabelFin">
-            Despesa 2
+          </div>
+          <div className="novoClienteFinanceirosDiv2">
+            <p className="novoClienteFinanceirosLabel2">Despesa 2</p>
             <input
               type="text"
-              className="novoClienteFinanceirosFormInput"
+              placeholder="Nome"
+              className="novoClienteFinanceirosFormInput2"
               id="tituloDespesa2"
               name="tituloDespesa2"
               form="financeiros"
@@ -99,13 +95,11 @@ export default function NovoClienteFinanceiros({
                 cuidarInsercaoDados(e);
               }}
             />
-          </label>
-          <label className="novoClienteFormLabelFin">
-            <TbArrowBigRightLinesFilled className="novoClienteFormSeta" />
-            Valor
+            <TbArrowBigRightLinesFilled className="novoClienteFormSeta2" />
             <input
               type="text"
-              className="novoClienteFinanceirosFormInput"
+              placeholder="Valor"
+              className="novoClienteFinanceirosFormInput3"
               id="valorDespesa2"
               name="valorDespesa2"
               form="financeiros"
@@ -115,14 +109,13 @@ export default function NovoClienteFinanceiros({
                 cuidarInputMoeda(e);
               }}
             />
-          </label>
-        </div>
-        <div className="novoClienteFinanceirosDiv">
-          <label className="novoClienteFormLabelFin">
-            Despesa 3
+          </div>
+          <div className="novoClienteFinanceirosDiv2">
+            <p className="novoClienteFinanceirosLabel2">Despesa 3</p>
             <input
               type="text"
-              className="novoClienteFinanceirosFormInput"
+              placeholder="Nome"
+              className="novoClienteFinanceirosFormInput2"
               id="tituloDespesa3"
               name="tituloDespesa3"
               form="financeiros"
@@ -132,14 +125,11 @@ export default function NovoClienteFinanceiros({
                 cuidarInsercaoDados(e);
               }}
             />
-          </label>
-
-          <label className="novoClienteFormLabelFin">
-            <TbArrowBigRightLinesFilled className="novoClienteFormSeta" />
-            Valor
+            <TbArrowBigRightLinesFilled className="novoClienteFormSeta2" />
             <input
               type="text"
-              className="novoClienteFinanceirosFormInput"
+              placeholder="Valor"
+              className="novoClienteFinanceirosFormInput3"
               id="valorDespesa3"
               name="valorDespesa3"
               form="financeiros"
@@ -149,14 +139,13 @@ export default function NovoClienteFinanceiros({
                 cuidarInputMoeda(e);
               }}
             />
-          </label>
-        </div>
-        <div className="novoClienteFinanceirosDiv">
-          <label className="novoClienteFormLabelFin">
-            Despesa 4
+          </div>
+          <div className="novoClienteFinanceirosDiv2">
+            <p className="novoClienteFinanceirosLabel2">Despesa 4</p>
             <input
               type="text"
-              className="novoClienteFinanceirosFormInput"
+              placeholder="Nome"
+              className="novoClienteFinanceirosFormInput2"
               id="tituloDespesa4"
               name="tituloDespesa4"
               form="financeiros"
@@ -166,13 +155,11 @@ export default function NovoClienteFinanceiros({
                 cuidarInsercaoDados(e);
               }}
             />
-          </label>
-          <label className="novoClienteFormLabelFin">
-            <TbArrowBigRightLinesFilled className="novoClienteFormSeta" />
-            Valor
+            <TbArrowBigRightLinesFilled className="novoClienteFormSeta2" />
             <input
               type="text"
-              className="novoClienteFinanceirosFormInput"
+              placeholder="Valor"
+              className="novoClienteFinanceirosFormInput3"
               id="valorDespesa4"
               name="valorDespesa4"
               form="financeiros"
@@ -182,14 +169,13 @@ export default function NovoClienteFinanceiros({
                 cuidarInputMoeda(e);
               }}
             />
-          </label>
-        </div>
-        <div className="novoClienteFinanceirosDiv">
-          <label className="novoClienteFormLabelFin">
-            Despesa 5
+          </div>
+          <div className="novoClienteFinanceirosDiv2">
+            <p className="novoClienteFinanceirosLabel2">Despesa 5</p>
             <input
               type="text"
-              className="novoClienteFinanceirosFormInput"
+              placeholder="Nome"
+              className="novoClienteFinanceirosFormInput2"
               id="tituloDespesa5"
               name="tituloDespesa5"
               form="financeiros"
@@ -199,13 +185,11 @@ export default function NovoClienteFinanceiros({
                 cuidarInsercaoDados(e);
               }}
             />
-          </label>
-          <label className="novoClienteFormLabelFin">
-            <TbArrowBigRightLinesFilled className="novoClienteFormSeta" />
-            Valor
+            <TbArrowBigRightLinesFilled className="novoClienteFormSeta2" />
             <input
               type="text"
-              className="novoClienteFinanceirosFormInput"
+              placeholder="Valor"
+              className="novoClienteFinanceirosFormInput3"
               id="valorDespesa5"
               name="valorDespesa5"
               form="financeiros"
@@ -215,14 +199,13 @@ export default function NovoClienteFinanceiros({
                 cuidarInputMoeda(e);
               }}
             />
-          </label>
-        </div>
-        <div className="novoClienteFinanceirosDiv">
-          <label className="novoClienteFormLabelFin">
-            Despesa 6
+          </div>
+          <div className="novoClienteFinanceirosDiv2">
+            <p className="novoClienteFinanceirosLabel2">Despesa 6</p>
             <input
               type="text"
-              className="novoClienteFinanceirosFormInput"
+              placeholder="Nome"
+              className="novoClienteFinanceirosFormInput2"
               id="tituloDespesa6"
               name="tituloDespesa6"
               form="financeiros"
@@ -232,13 +215,11 @@ export default function NovoClienteFinanceiros({
                 cuidarInsercaoDados(e);
               }}
             />
-          </label>
-          <label className="novoClienteFormLabelFin">
-            <TbArrowBigRightLinesFilled className="novoClienteFormSeta" />
-            Valor
+            <TbArrowBigRightLinesFilled className="novoClienteFormSeta2" />
             <input
               type="text"
-              className="novoClienteFinanceirosFormInput"
+              placeholder="Valor"
+              className="novoClienteFinanceirosFormInput3"
               id="valorDespesa6"
               name="valorDespesa6"
               form="financeiros"
@@ -248,14 +229,13 @@ export default function NovoClienteFinanceiros({
                 cuidarInputMoeda(e);
               }}
             />
-          </label>
-        </div>
-        <div className="novoClienteFinanceirosDiv">
-          <label className="novoClienteFormLabelFin">
-            Despesa 7
+          </div>
+          <div className="novoClienteFinanceirosDiv2">
+            <p className="novoClienteFinanceirosLabel2">Despesa 7</p>
             <input
               type="text"
-              className="novoClienteFinanceirosFormInput"
+              placeholder="Nome"
+              className="novoClienteFinanceirosFormInput2"
               id="tituloDespesa7"
               name="tituloDespesa7"
               form="financeiros"
@@ -265,13 +245,11 @@ export default function NovoClienteFinanceiros({
                 cuidarInsercaoDados(e);
               }}
             />
-          </label>
-          <label className="novoClienteFormLabelFin">
-            <TbArrowBigRightLinesFilled className="novoClienteFormSeta" />
-            Valor
+            <TbArrowBigRightLinesFilled className="novoClienteFormSeta2" />
             <input
               type="text"
-              className="novoClienteFinanceirosFormInput"
+              placeholder="Valor"
+              className="novoClienteFinanceirosFormInput3"
               id="valorDespesa7"
               name="valorDespesa7"
               form="financeiros"
@@ -281,14 +259,13 @@ export default function NovoClienteFinanceiros({
                 cuidarInputMoeda(e);
               }}
             />
-          </label>
-        </div>
-        <div className="novoClienteFinanceirosDiv">
-          <label className="novoClienteFormLabelFin">
-            Despesa 8
+          </div>
+          <div className="novoClienteFinanceirosDiv2">
+            <p className="novoClienteFinanceirosLabel2">Despesa 8</p>
             <input
               type="text"
-              className="novoClienteFinanceirosFormInput"
+              placeholder="Nome"
+              className="novoClienteFinanceirosFormInput2"
               id="tituloDespesa8"
               name="tituloDespesa8"
               form="financeiros"
@@ -298,13 +275,11 @@ export default function NovoClienteFinanceiros({
                 cuidarInsercaoDados(e);
               }}
             />
-          </label>
-          <label className="novoClienteFormLabelFin">
-            <TbArrowBigRightLinesFilled className="novoClienteFormSeta" />
-            Valor
+            <TbArrowBigRightLinesFilled className="novoClienteFormSeta2" />
             <input
               type="text"
-              className="novoClienteFinanceirosFormInput"
+              placeholder="Valor"
+              className="novoClienteFinanceirosFormInput3"
               id="valorDespesa8"
               name="valorDespesa8"
               form="financeiros"
@@ -314,14 +289,13 @@ export default function NovoClienteFinanceiros({
                 cuidarInputMoeda(e);
               }}
             />
-          </label>
-        </div>
-        <div className="novoClienteFinanceirosDiv">
-          <label className="novoClienteFormLabelFin">
-            Despesa 9
+          </div>
+          <div className="novoClienteFinanceirosDiv2">
+            <p className="novoClienteFinanceirosLabel2">Despesa 9</p>
             <input
               type="text"
-              className="novoClienteFinanceirosFormInput"
+              placeholder="Nome"
+              className="novoClienteFinanceirosFormInput2"
               id="tituloDespesa9"
               name="tituloDespesa9"
               form="financeiros"
@@ -331,14 +305,11 @@ export default function NovoClienteFinanceiros({
                 cuidarInsercaoDados(e);
               }}
             />
-          </label>
-
-          <label className="novoClienteFormLabelFin">
-            <TbArrowBigRightLinesFilled className="novoClienteFormSeta" />
-            Valor
+            <TbArrowBigRightLinesFilled className="novoClienteFormSeta2" />
             <input
               type="text"
-              className="novoClienteFinanceirosFormInput"
+              placeholder="Valor"
+              className="novoClienteFinanceirosFormInput3"
               id="valorDespesa9"
               name="valorDespesa9"
               form="financeiros"
@@ -348,14 +319,13 @@ export default function NovoClienteFinanceiros({
                 cuidarInputMoeda(e);
               }}
             />
-          </label>
-        </div>
-        <div className="novoClienteFinanceirosDiv">
-          <label className="novoClienteFormLabelFin">
-            Despesa 10
+          </div>
+          <div className="novoClienteFinanceirosDiv2">
+            <p className="novoClienteFinanceirosLabel2">Despesa 10</p>
             <input
               type="text"
-              className="novoClienteFinanceirosFormInput"
+              placeholder="Nome"
+              className="novoClienteFinanceirosFormInput2"
               id="tituloDespesa10"
               name="tituloDespesa10"
               form="financeiros"
@@ -365,14 +335,11 @@ export default function NovoClienteFinanceiros({
                 cuidarInsercaoDados(e);
               }}
             />
-          </label>
-
-          <label className="novoClienteFormLabelFin">
-            <TbArrowBigRightLinesFilled className="novoClienteFormSeta" />
-            Valor
+            <TbArrowBigRightLinesFilled className="novoClienteFormSeta2" />
             <input
               type="text"
-              className="novoClienteFinanceirosFormInput"
+              placeholder="Valor"
+              className="novoClienteFinanceirosFormInput3"
               id="valorDespesa10"
               name="valorDespesa10"
               form="financeiros"
@@ -382,8 +349,159 @@ export default function NovoClienteFinanceiros({
                 cuidarInputMoeda(e);
               }}
             />
-          </label>
+          </div>
+          <div className="novoClienteFinanceirosDiv2">
+            <p className="novoClienteFinanceirosLabel2">Despesa 11</p>
+            <input
+              type="text"
+              placeholder="Nome"
+              className="novoClienteFinanceirosFormInput2"
+              id="tituloDespesa11"
+              name="tituloDespesa11"
+              form="financeiros"
+              tabIndex={22}
+              maxLength={20}
+              onChange={(e) => {
+                cuidarInsercaoDados(e);
+              }}
+            />
+            <TbArrowBigRightLinesFilled className="novoClienteFormSeta2" />
+            <input
+              type="text"
+              placeholder="Valor"
+              className="novoClienteFinanceirosFormInput3"
+              id="valorDespesa11"
+              name="valorDespesa11"
+              form="financeiros"
+              tabIndex={23}
+              maxLength={20}
+              onChange={(e) => {
+                cuidarInputMoeda(e);
+              }}
+            />
+          </div>
+          <div className="novoClienteFinanceirosDiv2">
+            <p className="novoClienteFinanceirosLabel2">Despesa 12</p>
+            <input
+              type="text"
+              placeholder="Nome"
+              className="novoClienteFinanceirosFormInput2"
+              id="tituloDespesa12"
+              name="tituloDespesa12"
+              form="financeiros"
+              tabIndex={24}
+              maxLength={20}
+              onChange={(e) => {
+                cuidarInsercaoDados(e);
+              }}
+            />
+            <TbArrowBigRightLinesFilled className="novoClienteFormSeta2" />
+            <input
+              type="text"
+              placeholder="Valor"
+              className="novoClienteFinanceirosFormInput3"
+              id="valorDespesa12"
+              name="valorDespesa12"
+              form="financeiros"
+              tabIndex={24}
+              maxLength={20}
+              onChange={(e) => {
+                cuidarInputMoeda(e);
+              }}
+            />
+          </div>
+          <div className="novoClienteFinanceirosDiv2">
+            <p className="novoClienteFinanceirosLabel2">Despesa 13</p>
+            <input
+              type="text"
+              placeholder="Nome"
+              className="novoClienteFinanceirosFormInput2"
+              id="tituloDespesa13"
+              name="tituloDespesa13"
+              form="financeiros"
+              tabIndex={26}
+              maxLength={20}
+              onChange={(e) => {
+                cuidarInsercaoDados(e);
+              }}
+            />
+            <TbArrowBigRightLinesFilled className="novoClienteFormSeta2" />
+            <input
+              type="text"
+              placeholder="Valor"
+              className="novoClienteFinanceirosFormInput3"
+              id="valorDespesa13"
+              name="valorDespesa13"
+              form="financeiros"
+              tabIndex={27}
+              maxLength={20}
+              onChange={(e) => {
+                cuidarInputMoeda(e);
+              }}
+            />
+          </div>
+          <div className="novoClienteFinanceirosDiv2">
+            <p className="novoClienteFinanceirosLabel2">Despesa 14</p>
+            <input
+              type="text"
+              placeholder="Nome"
+              className="novoClienteFinanceirosFormInput2"
+              id="tituloDespesa14"
+              name="tituloDespesa14"
+              form="financeiros"
+              tabIndex={28}
+              maxLength={20}
+              onChange={(e) => {
+                cuidarInsercaoDados(e);
+              }}
+            />
+            <TbArrowBigRightLinesFilled className="novoClienteFormSeta2" />
+            <input
+              type="text"
+              placeholder="Valor"
+              className="novoClienteFinanceirosFormInput3"
+              id="valorDespesa14"
+              name="valorDespesa14"
+              form="financeiros"
+              tabIndex={28}
+              maxLength={20}
+              onChange={(e) => {
+                cuidarInputMoeda(e);
+              }}
+            />
+          </div>
+          <div className="novoClienteFinanceirosDiv2">
+            <p className="novoClienteFinanceirosLabel2">Despesa 15</p>
+            <input
+              type="text"
+              placeholder="Nome"
+              className="novoClienteFinanceirosFormInput2"
+              id="tituloDespesa15"
+              name="tituloDespesa15"
+              form="financeiros"
+              tabIndex={30}
+              maxLength={20}
+              onChange={(e) => {
+                cuidarInsercaoDados(e);
+              }}
+            />
+            <TbArrowBigRightLinesFilled className="novoClienteFormSeta2" />
+            <input
+              type="text"
+              placeholder="Valor"
+              className="novoClienteFinanceirosFormInput3"
+              id="valorDespesa15"
+              name="valorDespesa15"
+              form="financeiros"
+              tabIndex={30}
+              maxLength={20}
+              onChange={(e) => {
+                cuidarInputMoeda(e);
+              }}
+            />
+          </div>
         </div>
+
         <p className="novoClienteErroFinanceirosDespesas">{erroDespesas}</p>
       </form>
       <div className="botao">

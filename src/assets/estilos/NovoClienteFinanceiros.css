@@ -74,3 +74,51 @@
   cursor: pointer;
   margin: -70px 30px;
 }
+
+.novoClienteFinanceirosTabela {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+
+.novoClienteFinanceirosDiv2 {
+
+  display: grid;
+  grid-template-areas: 
+  "label label label"
+  "nome seta valor";
+  width: 90%;
+  margin: 0 auto;
+}
+
+.novoClienteFinanceirosLabel2 {
+  text-align: center;
+  margin: 20px 0 5px;
+  grid-area: label;
+}
+
+.novoClienteFinanceirosFormInput2 {
+  width: 90%;
+  border: none;
+  border-bottom: solid 1px gray;
+  padding: 5px 5px 0;
+  font-size: 1rem;
+  outline: none;
+  grid-area: nome;
+  margin: 0 auto;
+}
+
+.novoClienteFormSeta2 {
+  width: 20px;
+  height: 20px;
+}
+
+.novoClienteFinanceirosFormInput3 {
+  width: 90%;
+  border: none;
+  border-bottom: solid 1px gray;
+  padding: 5px 5px 0;
+  font-size: 1rem;
+  outline: none;
+  grid-area: valor;
+  margin: 0 auto;
+}

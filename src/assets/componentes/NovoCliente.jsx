@@ -5,7 +5,7 @@ import NovoClienteCodigo from "./NovoClienteCodigo";
 import "../estilos/NovoCliente.css";
 import api from "../services/api";
 
-export default function NovoCliente({ cuidarNovoClienteEsconder}) {
+export default function NovoCliente({ cuidarNovoClienteEsconder }) {
   const [pag, setPag] = useState(1);
   const [codigo, setCodigo] = useState("");
   const [valoresAnaliseNovo, setValoresPessoaisNovo] = useState({});
@@ -30,6 +30,16 @@ export default function NovoCliente({ cuidarNovoClienteEsconder}) {
     valorDespesa8: "",
     tituloDespesa9: "",
     valorDespesa9: "",
+    tituloDespesa11: "",
+    valorDespesa11: "",
+    tituloDespesa12: "",
+    valorDespesa12: "",
+    tituloDespesa13: "",
+    valorDespesa13: "",
+    tituloDespesa14: "",
+    valorDespesa14: "",
+    tituloDespesa15: "",
+    valorDespesa15: "",
   });
   const [erroNome, setErroNome] = useState(null);
   const [erroTelefone, setErroTelefone] = useState(null);
@@ -211,6 +221,11 @@ export default function NovoCliente({ cuidarNovoClienteEsconder}) {
     let despesa8 = false;
     let despesa9 = false;
     let despesa10 = false;
+    let despesa11 = false;
+    let despesa12 = false;
+    let despesa13 = false;
+    let despesa14 = false;
+    let despesa15 = false;
 
     if (valoresFinanceiros.receita) {
       setErroReceita(null);
@@ -245,11 +260,42 @@ export default function NovoCliente({ cuidarNovoClienteEsconder}) {
     if (valoresFinanceiros.tituloDespesa9 && valoresFinanceiros.valorDespesa9) {
       despesa9 = true;
     }
+
     if (
       valoresFinanceiros.tituloDespesa10 &&
       valoresFinanceiros.valorDespesa10
     ) {
       despesa10 = true;
+    }
+    if (
+      valoresFinanceiros.tituloDespesa11 &&
+      valoresFinanceiros.valorDespesa11
+    ) {
+      despesa11 = true;
+    }
+    if (
+      valoresFinanceiros.tituloDespesa12 &&
+      valoresFinanceiros.valorDespesa12
+    ) {
+      despesa12 = true;
+    }
+    if (
+      valoresFinanceiros.tituloDespesa13 &&
+      valoresFinanceiros.valorDespesa13
+    ) {
+      despesa13 = true;
+    }
+    if (
+      valoresFinanceiros.tituloDespesa14 &&
+      valoresFinanceiros.valorDespesa14
+    ) {
+      despesa14 = true;
+    }
+    if (
+      valoresFinanceiros.tituloDespesa15 &&
+      valoresFinanceiros.valorDespesa15
+    ) {
+      despesa15 = true;
     }
     if (
       despesa1 ||
@@ -261,7 +307,12 @@ export default function NovoCliente({ cuidarNovoClienteEsconder}) {
       despesa7 ||
       despesa8 ||
       despesa9 ||
-      despesa10
+      despesa10 ||
+      despesa11 ||
+      despesa12 ||
+      despesa13 ||
+      despesa14 ||
+      despesa15
     ) {
       setErroDespesas(null);
     } else {
@@ -326,6 +377,26 @@ export default function NovoCliente({ cuidarNovoClienteEsconder}) {
               valoresFinanceiros.tituloDespesa10 +
               " - " +
               valoresFinanceiros.valorDespesa10,
+            despesa11:
+              valoresFinanceiros.tituloDespesa11 +
+              " - " +
+              valoresFinanceiros.valorDespesa11,
+            despesa12:
+              valoresFinanceiros.tituloDespesa12 +
+              " - " +
+              valoresFinanceiros.valorDespesa12,
+            despesa13:
+              valoresFinanceiros.tituloDespesa13 +
+              " - " +
+              valoresFinanceiros.valorDespesa13,
+            despesa14:
+              valoresFinanceiros.tituloDespesa14 +
+              " - " +
+              valoresFinanceiros.valorDespesa14,
+            despesa15:
+              valoresFinanceiros.tituloDespesa15 +
+              " - " +
+              valoresFinanceiros.valorDespesa15,
           };
           let dataMeta = {
             usuario: idObj.id,
@@ -375,11 +446,15 @@ export default function NovoCliente({ cuidarNovoClienteEsconder}) {
     }
   };
 
-  useEffect(()=>{ 
-    let espacoEsquerda = (width*0.17)+((width*0.83-912)/2)
-    {espacoEsquerda > 200 ?  setEspacoEsquerda(espacoEsquerda) : setEspacoEsquerda(200)}
-    setEspacoTopo(height*0.1)
-  }, [])
+  useEffect(() => {
+    let espacoEsquerda = width * 0.17 + (width * 0.83 - 912) / 2;
+    {
+      espacoEsquerda > 200
+        ? setEspacoEsquerda(espacoEsquerda)
+        : setEspacoEsquerda(200);
+    }
+    setEspacoTopo(height * 0.1);
+  }, []);
 
   return (
     <section className="novoClienteTela">
@@ -387,8 +462,9 @@ export default function NovoCliente({ cuidarNovoClienteEsconder}) {
         className="novoClienteFundo"
         onClick={cuidarNovoClienteEsconder}
       ></section>
-      <section className="novoClienteModal"
-      style={{left: espacoEsquerda, top: espacoTopo}}
+      <section
+        className="novoClienteModal"
+        style={{ left: espacoEsquerda, top: espacoTopo }}
       >
         <header className="novoClienteCabecalho">
           <h1 className="novoClienteCabecalhoTitulo">Adicionar novo cliente</h1>
