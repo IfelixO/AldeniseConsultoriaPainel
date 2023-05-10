@@ -51,6 +51,10 @@ export default function Dashboard({ cuidarDashboardSair, cliente }) {
   const [confirmaS, setConfirmaS] = useState(false);
   const [renderiza, setRenderiza] = useState(true);
 
+  const [anotacoesConst, setAnotacoesConst] = useState([]);
+  const numAnotacoes = [1,2,3,4,5,6,7,8,9,10];
+  const qtdAnotacoes = 10;
+
   function objetivoCompletado() {
     alert("Parabéns");
   }
@@ -170,12 +174,9 @@ export default function Dashboard({ cuidarDashboardSair, cliente }) {
                     nomes.push(separacao[0]);
                   }
                 });
-                if (somaDespesas > 100) {
-                  setDespesasSobra(["Sobra", 0]);
-                } else {
-                  setDespesasSobra(["Sobra", 100 - somaDespesas]);
-                }
-                setReceita(custosArray.splice(2, 1));
+
+                let receitaL = custosArray.splice(2, 1);
+                setReceita(receitaL);
                 setDespesasConst(custosArray);
                 setDespesasConstNomes(nomes);
                 setDespesasConstValores(valores);
@@ -202,8 +203,31 @@ export default function Dashboard({ cuidarDashboardSair, cliente }) {
                     valores.forEach((el) => {
                       soma = soma + el;
                     });
+                    somaDespesas = somaDespesas + soma;
+                    let sobra = receitaL[0].replace("R$", "");
+                    sobra = sobra.replace(".", "");
+                    sobra = Number(sobra.replace(",", "."));
+                    sobra = sobra - somaDespesas;
+                    if (sobra > 0) {
+                      setDespesasSobra(["Sobra", sobra]);
+                    } else {
+                      setDespesasSobra(["Sobra", 0]);
+                    }
                     setVariavel(soma);
-                    setRenderiza(false);
+
+                    api
+                      .put("anotacoes/listarADM", data)
+                      .then((resA) => {
+                        let conversaoA = Object.keys(resA.data).map((key) => {
+                          return [String(key), resA.data[key]];
+                        });
+                        conversaoA.shift();
+                        setAnotacoesConst(conversaoA);
+                        setRenderiza(false);
+                      })
+                      .catch((err) => {
+                        console.log(err);
+                      });
                   })
                   .catch((err) => {
                     console.log(err);
@@ -325,207 +349,236 @@ export default function Dashboard({ cuidarDashboardSair, cliente }) {
           <div className="dashboardSkeletonColuna"></div>
         </section>
       ) : (
-        <section className="dashboard">
-          <div className="dashboardColuna">
-            <h2 className="dashboardColunaTitulo">Análise Comportamental</h2>
-            <div className="dashboardGraficoPizza">
-              <Chart
-                width={"250px"}
-                height={"250px"}
-                chartType="PieChart"
-                data={[
-                  ["Gráfico", "DISC"],
-                  ["Tubarão", tubarao],
-                  ["Gato", gato],
-                  ["Lobo", lobo],
-                  ["Águia", aguia],
-                ]}
-                options={{ legend: "none" }}
-              />
-            </div>
-
-            <div className="dashboardAnaliseGraficoDado">
-              <div className="dashboardAnaliseGraficoDadoCorTubarao"></div>
-              <p className="dashboardAnaliseGraficoDadoTitulo">Tubarão:</p>
-              <p className="dashboardAnaliseGraficoDadoPorc">{tubarao}%</p>
-            </div>
-            <div className="dashboardAnaliseGraficoDado">
-              <div className="dashboardAnaliseGraficoDadoCorGato"></div>
-              <p className="dashboardAnaliseGraficoDadoTitulo">Gato:</p>
-              <p className="dashboardAnaliseGraficoDadoPorc">{gato}%</p>
-            </div>
-            <div className="dashboardAnaliseGraficoDado">
-              <div className="dashboardAnaliseGraficoDadoCorLobo"></div>
-              <p className="dashboardAnaliseGraficoDadoTitulo">Lobo:</p>
-              <p className="dashboardAnaliseGraficoDadoPorc">{lobo}%</p>
-            </div>
-            <div className="dashboardAnaliseGraficoDado">
-              <div className="dashboardAnaliseGraficoDadoCorAguia"></div>
-              <p className="dashboardAnaliseGraficoDadoTitulo">Águia:</p>
-              <p className="dashboardAnaliseGraficoDadoPorc">{aguia}%</p>
-            </div>
-            <textarea
-              type="text"
-              className="dashboardDescricao"
-              cols={25}
-              rows={15}
-              maxLength={255}
-              placeholder={descricaoAnalise}
-              onChange={(e) => setDescricaoAnalise(e.target.value)}
-            />
-            <div className="dashboardBotao">
-              <button
-                className="dashboardDescricaoEnviar"
-                onClick={cuidarDescricaoA}
-              >
-                Enviar descrição nova
-              </button>
-              {confirmaA ? (
-                <FaCheckCircle
-                  color="green"
-                  size={20}
-                  className="dashboardDescricaoCheck"
+        <section className="dashboardConteinter">
+          <section className="dashboard">
+            <div className="dashboardColuna">
+              <h2 className="dashboardColunaTitulo">Análise Comportamental</h2>
+              <div className="dashboardGraficoPizza">
+                <Chart
+                  width={"250px"}
+                  height={"250px"}
+                  chartType="PieChart"
+                  data={[
+                    ["Gráfico", "DISC"],
+                    ["Tubarão", tubarao],
+                    ["Gato", gato],
+                    ["Lobo", lobo],
+                    ["Águia", aguia],
+                  ]}
+                  options={{ legend: "none" }}
                 />
-              ) : null}
-            </div>
-          </div>
-          <div className="dashboardColuna">
-            <h2 className="dashboardColunaTitulo">Objetivo</h2>
-            <p className="dashboardObjetivoProgressao">
-              {progressaoMeta} // {finalMeta}
-            </p>
-            <div className="dashboardObjetivoGrafico">
-              <div className="dashboardObjetivoGraficoFundo">
-                <div
-                  className="dashboardObjetivoGraficoProgressao"
-                  style={{ width: porcentagemMeta + "%" }}
-                ></div>
               </div>
-              <p className="dashboardObjetivoGraficoLegenda">
-                {porcentagemMeta.toFixed(2)} %
-              </p>
-            </div>
-            {entradasConst.map((el, i) => {
-              if (i > 0 && el != "" && el) {
-                let separacao = el.split(" - ");
-                let valor = Number(separacao[1]).toLocaleString("pt-BR", {
-                  style: "currency",
-                  currency: "BRL",
-                });
-                return (
-                  <div key={i} className="dashboardObjetivoParcela">
-                    <p className="dashboardObjetivoParcelaValor">{valor}</p>
-                    <p className="dashboardObjetivoParcelaData">
-                      {separacao[0]}
-                    </p>
-                  </div>
-                );
-              }
-            })}
-            {completou ? (
-              <button
-                className="dashboradObjetivoCompletouBotao"
-                onClick={objetivoCompletado}
-              >
-                Objetivo completado!
-              </button>
-            ) : null}
-          </div>
-          <div className="dashboardColuna">
-            <h2 className="dashboardColunaTitulo">Mapa de custos</h2>
-            <div className="dashboardGraficoPizza">
-              <Chart
-                width={"300px"}
-                height={"300px"}
-                chartType="PieChart"
-                data={[
-                  ["Gráfico", "Mapa de Custos"],
-                  ['Despesa variável', variavel],
-                  [despesasConstNomes[0], despesasConstValores[0]],
-                  [despesasConstNomes[1], despesasConstValores[1]],
-                  [despesasConstNomes[2], despesasConstValores[2]],
-                  [despesasConstNomes[3], despesasConstValores[3]],
-                  [despesasConstNomes[4], despesasConstValores[4]],
-                  [despesasConstNomes[5], despesasConstValores[5]],
-                  [despesasConstNomes[6], despesasConstValores[6]],
-                  [despesasConstNomes[7], despesasConstValores[7]],
-                  [despesasConstNomes[8], despesasConstValores[8]],
-                  [despesasConstNomes[9], despesasConstValores[9]],
-                  [despesasConstNomes[10], despesasConstValores[10]],
-                  [despesasConstNomes[11], despesasConstValores[11]],
-                  [despesasConstNomes[12], despesasConstValores[12]],
-                  [despesasConstNomes[13], despesasConstValores[13]],
-                  [despesasConstNomes[14], despesasConstValores[14]],
-                  [despesasSobra[0], despesasSobra[1]],
-                ]}
-                options={{ legend: "none" }}
-              />
-            </div>
-            <div className="dashboardMapaRenda">
-              <p className="dashboardMapaRendaTitulo">Renda mensal</p>
-              <p className="dashboardMapaRendaValor">{receita}</p>
-            </div>
-            <div className="dashboardMapaDespesa">
-              <div className="dashboardMapaDespesaCor" id="cor1"></div>
-              <p className="dashboardMapaDespesaTitulo">Despesa variável</p>
-              <p className="dashboardMapaDespesaValor">
-                {variavel.toLocaleString("pt-BR", {
-                  style: "currency",
-                  currency: "BRL",
-                })}
-              </p>
-            </div>
-            {despesasConst.map((el, i) => {
-              if (i > 1) {
-                let id = "cor" + i;
-                let separacao = el.split(" - ");
-                return (
-                  <div key={i} className="dashboardMapaDespesa">
-                    <div className="dashboardMapaDespesaCor" id={id}></div>
-                    <p className="dashboardMapaDespesaTitulo">{separacao[0]}</p>
-                    <p className="dashboardMapaDespesaValor">{separacao[1]}</p>
-                  </div>
-                );
-              }
-            })}
-          </div>
-          <div className="dashboardColuna" id="colunaSaude">
-            <h2 className="dashboardColunaTitulo">Saúde financeira</h2>
-            <div className="dashboardColunaSaudeGrafico">
-              <img src={grafico} alt="" className="dashboardGraficoSaude" />
-              <img
-                src={agulha}
-                alt=""
-                title="Saúde Financeira"
-                className="dashboardGraficoSaudeAgulha"
-              />
-            </div>
-            <textarea
-              type="text"
-              className="dashboardDescricao"
-              cols={25}
-              rows={15}
-              maxLength={255}
-              placeholder={descricaoSaude}
-              onChange={(e) => setDescricaoSaude(e.target.value)}
-            />
 
-            <div className="dashboardBotao">
-              <button
-                className="dashboardDescricaoEnviar"
-                onClick={cuidarDescricaoS}
-              >
-                Enviar descrição nova
-              </button>
-              {confirmaS ? (
-                <FaCheckCircle
-                  color="green"
-                  size={20}
-                  className="dashboardDescricaoCheck"
-                />
+              <div className="dashboardAnaliseGraficoDado">
+                <div className="dashboardAnaliseGraficoDadoCorTubarao"></div>
+                <p className="dashboardAnaliseGraficoDadoTitulo">Tubarão:</p>
+                <p className="dashboardAnaliseGraficoDadoPorc">{tubarao}%</p>
+              </div>
+              <div className="dashboardAnaliseGraficoDado">
+                <div className="dashboardAnaliseGraficoDadoCorGato"></div>
+                <p className="dashboardAnaliseGraficoDadoTitulo">Gato:</p>
+                <p className="dashboardAnaliseGraficoDadoPorc">{gato}%</p>
+              </div>
+              <div className="dashboardAnaliseGraficoDado">
+                <div className="dashboardAnaliseGraficoDadoCorLobo"></div>
+                <p className="dashboardAnaliseGraficoDadoTitulo">Lobo:</p>
+                <p className="dashboardAnaliseGraficoDadoPorc">{lobo}%</p>
+              </div>
+              <div className="dashboardAnaliseGraficoDado">
+                <div className="dashboardAnaliseGraficoDadoCorAguia"></div>
+                <p className="dashboardAnaliseGraficoDadoTitulo">Águia:</p>
+                <p className="dashboardAnaliseGraficoDadoPorc">{aguia}%</p>
+              </div>
+              <textarea
+                type="text"
+                className="dashboardDescricao"
+                cols={25}
+                rows={15}
+                maxLength={255}
+                placeholder={descricaoAnalise}
+                onChange={(e) => setDescricaoAnalise(e.target.value)}
+              />
+              <div className="dashboardBotao">
+                <button
+                  className="dashboardDescricaoEnviar"
+                  onClick={cuidarDescricaoA}
+                >
+                  Enviar descrição nova
+                </button>
+                {confirmaA ? (
+                  <FaCheckCircle
+                    color="green"
+                    size={20}
+                    className="dashboardDescricaoCheck"
+                  />
+                ) : null}
+              </div>
+            </div>
+            <div className="dashboardColuna">
+              <h2 className="dashboardColunaTitulo">Objetivo</h2>
+              <p className="dashboardObjetivoProgressao">
+                {progressaoMeta} // {finalMeta}
+              </p>
+              <div className="dashboardObjetivoGrafico">
+                <div className="dashboardObjetivoGraficoFundo">
+                  <div
+                    className="dashboardObjetivoGraficoProgressao"
+                    style={{ width: porcentagemMeta + "%" }}
+                  ></div>
+                </div>
+                <p className="dashboardObjetivoGraficoLegenda">
+                  {porcentagemMeta.toFixed(2)} %
+                </p>
+              </div>
+              {entradasConst.map((el, i) => {
+                if (i > 0 && el != "" && el) {
+                  let separacao = el.split(" - ");
+                  let valor = Number(separacao[1]).toLocaleString("pt-BR", {
+                    style: "currency",
+                    currency: "BRL",
+                  });
+                  return (
+                    <div key={i} className="dashboardObjetivoParcela">
+                      <p className="dashboardObjetivoParcelaValor">{valor}</p>
+                      <p className="dashboardObjetivoParcelaData">
+                        {separacao[0]}
+                      </p>
+                    </div>
+                  );
+                }
+              })}
+              {completou ? (
+                <button
+                  className="dashboradObjetivoCompletouBotao"
+                  onClick={objetivoCompletado}
+                >
+                  Objetivo completado!
+                </button>
               ) : null}
             </div>
-          </div>
+            <div className="dashboardColuna">
+              <h2 className="dashboardColunaTitulo">Mapa de custos</h2>
+              <div className="dashboardGraficoPizza">
+                <Chart
+                  width={"300px"}
+                  height={"300px"}
+                  chartType="PieChart"
+                  data={[
+                    ["Gráfico", "Mapa de Custos"],
+                    ["Despesa variável", variavel],
+                    [despesasConstNomes[0], despesasConstValores[0]],
+                    [despesasConstNomes[1], despesasConstValores[1]],
+                    [despesasConstNomes[2], despesasConstValores[2]],
+                    [despesasConstNomes[3], despesasConstValores[3]],
+                    [despesasConstNomes[4], despesasConstValores[4]],
+                    [despesasConstNomes[5], despesasConstValores[5]],
+                    [despesasConstNomes[6], despesasConstValores[6]],
+                    [despesasConstNomes[7], despesasConstValores[7]],
+                    [despesasConstNomes[8], despesasConstValores[8]],
+                    [despesasConstNomes[9], despesasConstValores[9]],
+                    [despesasConstNomes[10], despesasConstValores[10]],
+                    [despesasConstNomes[11], despesasConstValores[11]],
+                    [despesasConstNomes[12], despesasConstValores[12]],
+                    [despesasConstNomes[13], despesasConstValores[13]],
+                    [despesasConstNomes[14], despesasConstValores[14]],
+                    [despesasSobra[0], despesasSobra[1]],
+                  ]}
+                  options={{ legend: "none" }}
+                />
+              </div>
+              <div className="dashboardMapaRenda">
+                <p className="dashboardMapaRendaTitulo">Renda mensal</p>
+                <p className="dashboardMapaRendaValor">{receita}</p>
+              </div>
+              <div className="dashboardMapaDespesa">
+                <div className="dashboardMapaDespesaCor" id="cor1"></div>
+                <p className="dashboardMapaDespesaTitulo">Despesa variável</p>
+                <p className="dashboardMapaDespesaValor">
+                  {variavel.toLocaleString("pt-BR", {
+                    style: "currency",
+                    currency: "BRL",
+                  })}
+                </p>
+              </div>
+              {despesasConst.map((el, i) => {
+                if (i > 1) {
+                  let id = "cor" + i;
+                  let separacao = el.split(" - ");
+                  return (
+                    <div key={i} className="dashboardMapaDespesa">
+                      <div className="dashboardMapaDespesaCor" id={id}></div>
+                      <p className="dashboardMapaDespesaTitulo">
+                        {separacao[0]}
+                      </p>
+                      <p className="dashboardMapaDespesaValor">
+                        {separacao[1]}
+                      </p>
+                    </div>
+                  );
+                }
+              })}
+            </div>
+            <div className="dashboardColuna" id="colunaSaude">
+              <h2 className="dashboardColunaTitulo">Saúde financeira</h2>
+              <div className="dashboardColunaSaudeGrafico">
+                <img src={grafico} alt="" className="dashboardGraficoSaude" />
+                <img
+                  src={agulha}
+                  alt=""
+                  title="Saúde Financeira"
+                  className="dashboardGraficoSaudeAgulha"
+                />
+              </div>
+              <textarea
+                type="text"
+                className="dashboardDescricao"
+                cols={25}
+                rows={15}
+                maxLength={255}
+                placeholder={descricaoSaude}
+                onChange={(e) => setDescricaoSaude(e.target.value)}
+              />
+
+              <div className="dashboardBotao">
+                <button
+                  className="dashboardDescricaoEnviar"
+                  onClick={cuidarDescricaoS}
+                >
+                  Enviar descrição nova
+                </button>
+                {confirmaS ? (
+                  <FaCheckCircle
+                    color="green"
+                    size={20}
+                    className="dashboardDescricaoCheck"
+                  />
+                ) : null}
+              </div>
+            </div>
+          </section>
+          <section className="dashboardAnotacoes">
+            <h2 className="dashboardAnotacoesTitulo">Anotações</h2>
+
+            {numAnotacoes.map((el, i) => {
+              let indexTitulo = el + qtdAnotacoes
+              let indexTexto = el 
+              let indexData = el + qtdAnotacoes + qtdAnotacoes
+              let titulo = anotacoesConst[indexTitulo] 
+              let texto = anotacoesConst[indexTexto] 
+              let data = anotacoesConst[indexData] 
+              if(titulo[1] != '')
+
+              return (
+                <div className="dashboardAnotacoesNota" key={i}>
+                  <h3 className="dashboardAnotacoesNotaTitulo">{titulo[1]}</h3>
+                  <p className="dashboardAnotacoesNotaTexto">
+                    {texto[1]}
+                  </p>
+                </div>
+              );
+              
+            })}
+          </section>
         </section>
       )}
     </section>

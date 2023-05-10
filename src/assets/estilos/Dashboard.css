@@ -7,6 +7,7 @@
   /* background-color: rgba(0, 58, 54, 0.15); */
   /* min-width: 83vw; */
   padding: 70px 70px 0 0;
+  overflow-x: hidden;
 }
 
 .dashboardVoltar {
@@ -61,12 +62,18 @@
   animation: animate 6s ease infinite;
 }
 
+.dashboardConteinter {
+  padding-bottom: 50px;
+  padding-left: 10px;
+}
+
 .dashboard {
   display: flex;
   gap: 30px;
   width: 100%;
   margin: 10px 0px 0 0;
   justify-content: space-between;
+  flex-wrap: wrap;
 }
 
 .dashboardColuna {
@@ -174,7 +181,6 @@
   justify-content: space-between;
 }
 
-
 .dashboradObjetivoCompletouBotao {
   padding: 10px 15px;
   background-color: #003a36;
@@ -234,7 +240,7 @@
   height: 20px;
 }
 
-#cor9{
+#cor9 {
   background-color: #b82e2e;
   width: 20px;
   height: 20px;
@@ -253,31 +259,31 @@
 }
 
 #cor12 {
-  background-color: #22AA99;
+  background-color: #22aa99;
   width: 20px;
   height: 20px;
 }
 
 #cor13 {
-  background-color: #AAAA11;
+  background-color: #aaaa11;
   width: 20px;
   height: 20px;
 }
 
 #cor14 {
-  background-color: #6633CC;
+  background-color: #6633cc;
   width: 20px;
   height: 20px;
 }
 
 #cor15 {
-  background-color: #E67300;
+  background-color: #e67300;
   width: 20px;
   height: 20px;
 }
 
 #cor16 {
-  background-color: #8B0707;
+  background-color: #8b0707;
   width: 20px;
   height: 20px;
 }
@@ -332,4 +338,28 @@
   border: none;
   border-radius: 5px;
   cursor: pointer;
+}
+
+.dashboardAnotacoes {
+  background-color: white;
+  width: 100%;
+  height: fit-content;
+  background-color: white;
+  border-radius: 5px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 15px 30px 30px;
+  box-shadow: 0 0 5px 2px gray;
+  margin: 50px 0;
+}
+
+.dashboardAnotacoesNota {
+  margin-top: 20px;
+  width: 100%;
+}
+
+.dashboardAnotacoesNotaTitulo {
+  font-size: 1.1rem;
+  margin-bottom: 10px;
 }

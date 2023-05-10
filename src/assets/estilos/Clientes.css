@@ -1,7 +1,9 @@
 .clientesTela {
-  height: 100vh;
+  min-height: 100vh;
   min-width: 100vw;
-  background-color: rgba(0, 58, 54, 0.15);
+  /* background-color: rgba(0, 58, 54, 0.15); */
+  position: absolute;
+  z-index: 2;
 }
 
 .clientesFundo{

@@ -11,11 +11,10 @@ export default function Clientes() {
   const [dashboardVisibilidade, setDashboardVisibilidade] = useState(false);
   const [cliente, setCliente] = useState();
 
-  const [pesquisa, setPesquisa] = useState('');
+  const [pesquisa, setPesquisa] = useState("");
   const [definirPesquisa, setDefinePesquisa] = useState(false);
 
   const [atualiza, setAtualiza] = useState(false);
-
 
   function cuidarNovoClienteMostrar() {
     setAddVisibilidade(true);
@@ -23,7 +22,7 @@ export default function Clientes() {
 
   function cuidarNovoClienteEsconder() {
     setAddVisibilidade(false);
-    setAtualiza(true)
+    setAtualiza(true);
   }
 
   function cuidarDashboardEntrar(el) {
@@ -35,30 +34,42 @@ export default function Clientes() {
     setDashboardVisibilidade(false);
   }
 
-  function cuidarPesquisa() {
-
-  }
+  function cuidarPesquisa() {}
 
   return (
-    <section className="clientesTela">
-      <Menu />
-      <section className="clientesConteudo">
-        {addVisibilidade ? (
-          <NovoCliente setAtualiza={setAtualiza} cuidarNovoClienteEsconder={cuidarNovoClienteEsconder} />
+    <>
+      <div className="clientesFundo"></div>
+      <section className="clientesTela">
+        <Menu />
+        <section className="clientesConteudo">
+          {addVisibilidade ? (
+            <NovoCliente
+              setAtualiza={setAtualiza}
+              cuidarNovoClienteEsconder={cuidarNovoClienteEsconder}
+            />
           ) : null}
-        {dashboardVisibilidade ? (
-          <Dashboard
-          cliente={cliente}
-          cuidarDashboardSair={cuidarDashboardSair}
-          />
-        ) : (
-          <>
-            <Cabecalho setDefinePesquisa={setDefinePesquisa} setPesquisa={setPesquisa} cuidarNovoClienteMostrar={cuidarNovoClienteMostrar} />
-            <Tabela atualiza={atualiza} pesquisa={pesquisa} definirPesquisa={definirPesquisa} cuidarDashboardEntrar={cuidarDashboardEntrar} />
-          </>
-        )}
+          {dashboardVisibilidade ? (
+            <Dashboard
+              cliente={cliente}
+              cuidarDashboardSair={cuidarDashboardSair}
+            />
+          ) : (
+            <>
+              <Cabecalho
+                setDefinePesquisa={setDefinePesquisa}
+                setPesquisa={setPesquisa}
+                cuidarNovoClienteMostrar={cuidarNovoClienteMostrar}
+              />
+              <Tabela
+                atualiza={atualiza}
+                pesquisa={pesquisa}
+                definirPesquisa={definirPesquisa}
+                cuidarDashboardEntrar={cuidarDashboardEntrar}
+              />
+            </>
+          )}
+        </section>
       </section>
-      {/* <div className="clientesFundo"></div> */}
-    </section>
+    </>
   );
 }
